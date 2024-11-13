@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-f2suk443g-8eut_uq28&0ya)=_cqmvxzh6fpfmvjd!iu_5vhsq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 TEMPLATE_DEBUG=DEBUG
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://apekshalearn.netlify.app']
 
 
 # Application definition
