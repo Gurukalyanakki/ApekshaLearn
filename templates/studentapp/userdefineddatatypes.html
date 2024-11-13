@@ -1,0 +1,236 @@
+{% extends 'navbar/studentnavbar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/studenthomepage.css' %}">
+
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>C Programming Language Tutorial</h2>
+        <ul>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown1')">Structures</button>
+                <ul class="dropdown-content" id="dropdown1" style="display: none;">
+                    <li><a class="dropdown-item" href="#">Structure declaration</a></li>
+                    <li><a class="dropdown-item" href="#">Structure definition </a></li>
+                
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown2')">Storageclasses in C</button>
+                <ul class="dropdown-content" id="dropdown2" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:Storageclass' %}">Storageclasses</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <style>
+        h1, h2 {
+            color: #333;
+        }
+        p, li {
+            margin: 10px 0;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #322f2f;
+        }
+        table, th, td {
+            border: 1px solid #504b4b;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #403d3d;
+        }
+        .code-container {
+            background-color: #292827ec;
+            padding: 10px;
+            border-radius: 5px;
+            color: #e0d9d5;
+            font-family: monospace;
+            margin-top: 20px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        h1 {
+            position: relative;
+            padding: 20px 0;
+        }
+        h1::after, h1::before {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #e7962b;
+            position: absolute;
+            left: 0;
+        }
+        h1::after {
+            bottom: 0;
+        }
+        h1::before {
+            top: 0;
+        }
+        .centered-responsive-image {
+            display: block;
+            margin: 20px auto;
+            width: 120%;
+            max-width: 700px;
+            height: 400px;
+        }
+    </style>
+       <h1>C Structures</h1>
+       <p>The structure in C is a user-defined data type that can be used to group items of possibly different types into a single type. The <code>struct</code> keyword is used to define the structure in the C programming language. The items in the structure are called its members, and they can be of any valid data type. Additionally, the values of a structure are stored in contiguous memory locations.</p>
+
+       <h3>C Structure Declaration</h3>
+       <p>We have to declare structure in C before using it in our program. In structure declaration, we specify its member variables along with their datatype. We can use the <code>struct</code> keyword to declare the structure in C using the following syntax:</p>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre>
+<code>
+struct structure_name {
+   data_type member_name1;
+   data_type member_name2;
+   ...
+};
+</code>
+           </pre>
+       </div>
+
+       <h3>C Structure Definition</h3>
+       <p>To use a structure in our program, we need to define its instance by creating variables of the structure type. We can define structure variables using two methods:</p>
+       <img src="{% static 'images/structuresc.png' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+       <h2>1. Structure Variable Declaration with Structure Template</h2>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre>
+<code>
+struct structure_name {
+   data_type member_name1;
+   data_type member_name2;
+   ...
+} variable1, variable2, ...;
+</code>
+           </pre>
+       </div>
+
+       <h2>2. Structure Variable Declaration after Structure Template</h2>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre>
+<code>
+// Structure declared beforehand
+struct structure_name variable1, variable2, ....;
+</code>
+           </pre>
+       </div>
+
+       <h3>Access Structure Members</h3>
+       <p>We can access structure members by using the dot <code>(.)</code> operator.</p>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre>
+<code>
+structure_name.member1;
+structure_name.member2;
+</code>
+           </pre>
+       </div>
+
+       <h3>Initialize Structure Members</h3>
+       <p>Structure members cannot be initialized with the declaration. For example, the following C program fails in the compilation:</p>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre>
+<code>
+struct Point {
+   int x = 0;  // COMPILER ERROR: cannot initialize members here
+   int y = 0;  // COMPILER ERROR: cannot initialize members here
+};
+</code>
+           </pre>
+       </div>
+       <p>The reason for the above error is that memory is allocated only when variables are created, not at declaration.</p>
+
+       <h3>Example of Structure in C</h3>
+       <p>The following C program shows how to use structures:</p>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre>
+<code>
+// C program to illustrate the use of structures
+#include &lt;stdio.h&gt;
+
+struct str1 {
+   int i;
+   char c;
+   float f;
+   char s[30];
+};
+
+struct str2 {
+   int ii;
+   char cc;
+   float ff;
+} var;
+
+int main() {
+   struct str1 var1 = { 1, 'A', 1.00, "GeeksforGeeks" };
+   struct str2 var3 = { .ff = 5.00, .ii = 5, .cc = 'a' };
+
+   printf("Struct 1:\n\ti = %d, c = %c, f = %f, s = %s\n", var1.i, var1.c, var1.f, var1.s);
+   printf("Struct 3\n\ti = %d, c = %c, f = %f\n", var3.ii, var3.cc, var3.ff);
+   return 0;
+}
+</code>
+           </pre>
+       </div>
+
+       <h3>Using typedef with Structures</h3>
+       <p>The <code>typedef</code> keyword is used to define an alias for an already existing datatype. This can help simplify code when using structures.</p>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre>
+<code>
+// C Program to illustrate typedef with structures
+#include &lt;stdio.h&gt;
+
+typedef struct {
+   int a;
+} str1;
+
+typedef struct {
+   int x;
+} str2;
+
+int main() {
+   str1 var1 = { 20 };
+   str2 var2 = { 314 };
+
+   printf("var1.a = %d\n", var1.a);
+   printf("var2.x = %d\n", var2.x);
+
+   return 0;
+}
+</code>
+           </pre>
+      
+    </div>
+    
+</div>
+
+<!-- JavaScript for Dropdown Functionality -->
+<script>
+    function toggleDropdown(id) {
+        var dropdown = document.getElementById(id);
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+{% endblock %}

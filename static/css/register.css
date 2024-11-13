@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: url({% static 'images/login.jpg' %}) no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  color: #ffffff;
+  padding-top: 30px;
+}
+
+/* Form container styling */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 15px;
+  /* box-shadow: 0 6px 25px rgba(0, 0, 0, 0.8); */ /* Removed box shadow */
+  width: 90%;
+  max-width: 400px;
+  gap: 15px;
+}
+
+
+}
+
+.welcome-section {
+  text-align: center;
+}
+
+.welcome-section h1 {
+  font-size: 32px; /* Decreased font size */
+  line-height: 1.3;
+  color: #ff6600;
+}
+
+.form-section {
+  width: 100%;
+}
+
+.form-section h2 {
+  font-size: 22px; /* Decreased font size */
+  margin-bottom: 15px; /* Decreased margin */
+  text-align: center;
+  color: #ff6600;
+}
+
+.form-section label {
+  display: block;
+  font-size: 14px; /* Decreased font size */
+  margin: 8px 0 6px; /* Decreased margin */
+  color: #ffffff;
+}
+
+.form-section input[type="text"],
+.form-section input[type="email"],
+.form-section input[type="password"] {
+  width: 100%;
+  padding: 10px; /* Decreased padding */
+  margin-bottom: 15px; /* Decreased margin */
+  border: none;
+  border-radius: 5px;
+  background-color: #333333;
+  color: #ffffff;
+  font-size: 14px; /* Decreased font size */
+}
+
+.form-section input::placeholder {
+  color: #bbbbbb;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 10px; /* Decreased padding */
+  border: none;
+  border-radius: 5px;
+  background-color: #ff6600;
+  color: #ffffff;
+  font-size: 16px; /* Decreased font size */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #f1691b;
+}
+
+/* Message styling */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  color: #e9803b;
+  font-size: 14px; /* Decreased font size */
+  text-align: center;
+  margin-top: 8px; /* Decreased margin */
+}

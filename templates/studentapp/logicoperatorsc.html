@@ -1,0 +1,294 @@
+{% extends 'navbar/studentnavbar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/studenthomepage.css' %}">
+
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>C Programming Language Tutorial</h2>
+        <ul>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown1')">C LogicOperators</button>
+                <ul class="dropdown-content" id="dropdown1" style="display: none;">
+                    <li><a class="dropdown-item" href="#">Conditional or Ternary Operator</a></li>
+                   
+                    <li><a class="dropdown-item" href="#">Operator precedence and Associativity </a></li>
+                   
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown2')">Control Statements</button>
+                <ul class="dropdown-content" id="dropdown2" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:conditionalstc' %}">Control statements  in C</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <style>
+            h1, h2 {
+                color: #333;
+            }
+            p, li {
+                margin: 10px 0;
+            }
+            table {
+                width: 80%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                background-color: #322f2f;
+            }
+            table, th, td {
+                border: 1px solid #504b4b;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #403d3d;
+            }
+            .code-container {
+                background-color: #292827ec;
+                padding: 10px;
+                border-radius: 5px;
+                color: #e0d9d5;
+                font-family: monospace;
+                margin-top: 20px;
+                white-space: pre;
+                overflow-x: auto;
+            }
+            h1 {
+                position: relative;
+                padding: 20px 0;
+            }
+            h1::after, h1::before {
+                content: "";
+                display: block;
+                width: 100%;
+                height: 2px;
+                background-color: #e7962b;
+                position: absolute;
+                left: 0;
+            }
+            h1::after {
+                bottom: 0;
+            }
+            h1::before {
+                top: 0;
+            }
+            .centered-responsive-image {
+                display: block;
+                margin: 20px auto;
+                width: 120%;
+                max-width: 700px;
+                height: 400px;
+            }
+        </style>
+  <!-- Main Content -->
+  
+    <h1>Conditional (Ternary) Operator in C</h1>
+   
+    <p>The conditional operator, also known as the ternary operator, is a concise alternative to the if-else statement in C.</p>
+
+    <p> This operator allows decision-making with a compact syntax, making code simpler when only a single action depends on a condition.</p>
+    <img src="{% static 'images/ternaryc.png' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+    <h2>Syntax of Conditional/Ternary Operator in C:</h2>
+    <p><strong>Basic Syntax:</strong></p>
+    <div class="code-container">
+        <pre><code>variable = Expression1 ? Expression2 : Expression3;</code></pre>
+    </div>
+    <p>Here, <code>Expression1</code> is the condition to evaluate. If true, <code>Expression2</code> is executed; otherwise, <code>Expression3</code> is executed.</p>
+
+    <p><strong>Alternate Syntaxes:</strong></p>
+    <div class="code-container">
+        <pre><code>variable = (condition) ? Expression2 : Expression3;</code></pre>
+    </div>
+    <div class="code-container">
+        <pre><code>(condition) ? (variable = Expression2) : (variable = Expression3);</code></pre>
+    </div>
+
+    <h2>Visualizing the Ternary Operator as an if-else Statement</h2>
+    <p>The ternary operation:</p>
+    <div class="code-container">
+        <pre><code>variable = condition ? Expression2 : Expression3;</code></pre>
+    </div>
+    <p>is equivalent to:</p>
+    <div class="code-container">
+        <pre><code>if (condition) {
+variable = Expression2;
+} else {
+variable = Expression3;
+}</code></pre>
+    </div>
+    <p><strong>Note:</strong> The ternary operator has a lower precedence than many other operators, so parentheses should be used carefully to avoid unexpected behavior.</p>
+
+    <h2>Working of the Ternary Operator</h2>
+    <p>The conditional operator evaluates the condition in three main steps:</p>
+    <ol>
+        <li><code>Expression1</code> (the condition) is evaluated.</li>
+        <li>If true, <code>Expression2</code> is executed.</li>
+        <li>If false, <code>Expression3</code> is executed.</li>
+    </ol>
+    <p>The result is returned and assigned to the variable (if applicable).</p>
+
+    <h2>Example Programs</h2>
+
+    <h3>Example 1: Find the Greater of Two Numbers Using the Ternary Operator</h3>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+int m = 5, n = 4;
+
+(m > n) ? printf("m is greater than n: %d > %d", m, n)
+        : printf("n is greater than m: %d > %d", n, m);
+
+return 0;
+}</code></pre>
+    </div>
+    <p><strong>Output:</strong></p>
+    <div class="code-container">
+        <pre><code>m is greater than n: 5 > 4</code></pre>
+    </div>
+
+    <h3>Example 2: Check Leap Year Using the Ternary Operator</h3>
+    <div class="code-container">
+        <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+int yr = 1900;
+
+(yr % 4 == 0) ? (yr % 100 != 0 ? printf("The year %d is a leap year", yr)
+                : (yr % 400 == 0 ? printf("The year %d is a leap year", yr)
+                                 : printf("The year %d is not a leap year", yr)))
+              : printf("The year %d is not a leap year", yr);
+
+return 0;
+}</code></pre>
+    </div>
+    <p><strong>Output:</strong></p>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <pre><code>The year 1900 is not a leap year</code></pre>
+    </div>
+
+    <h2>Conclusion</h2>
+    <p>The conditional (ternary) operator in C provides a shorthand way to write conditional assignments and expressions.</p>
+        <p> It's ideal for simple conditions but can make code harder to read when used for complex logic.</p>
+
+        <!-- Content for C Operators Tutorial -->
+        <h1>Operator Precedence and Associativity in C</h1>
+      
+        <hr>
+        <p>Operator precedence and associativity in C help determine which operators are prioritized in expressions. This avoids unnecessary parentheses and ambiguity in evaluation order.</p>
+        <img src="{% static 'images/presedence.jpg' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+        <h2>Operator Precedence and Associativity Table</h2>
+        <p>The table below lists operators from highest to lowest precedence, along with their associativity:</p>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Precedence</th>
+                    <th>Operator</th>
+                    <th>Description</th>
+                    <th>Associativity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>() [] . -> ++ --</td><td>Parentheses, array, dot, pointer, postfix increment/decrement</td><td>Left-to-Right</td></tr>
+                <tr><td>2</td><td>++ -- + - ! ~ (type) * & sizeof</td><td>Prefix increment/decrement, unary operators, cast, dereference, address</td><td>Right-to-Left</td></tr>
+                <tr><td>3</td><td>* / %</td><td>Multiplication, division, modulus</td><td>Left-to-Right</td></tr>
+                <!-- Add the remaining rows similarly -->
+                <tr><td>15</td><td>,</td><td>Comma (expression separator)</td><td>Left-to-Right</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Mnemonic for Remembering Precedence: PUMA’S REBL TAC</h3>
+        <p>P = Postfix, U = Unary, M = Multiplicative, A = Additive, S = Shift, R = Relational, E = Equality, B = Bitwise, L = Logical, T = Ternary, A = Assignment, C = Comma.</p>
+
+        <h2>Examples of Operator Precedence and Associativity</h2>
+        
+        <h3>1. Example of Operator Precedence</h3>
+        <div class="code-container">
+            <h3>Sample Code</h3>
+            <pre><code>// C Program to illustrate operator precedence
+#include &lt;stdio.h&gt;
+
+int main() {
+    printf("10 + 20 * 30 = %d", 10 + 20 * 30);
+    return 0;
+}</code></pre>
+        </div>
+        <p><strong>Output:</strong> 10 + 20 * 30 = 610</p>
+
+        <h3>2. Example of Operator Associativity</h3>
+        <div class="code-container">
+            <h3>Sample Code</h3>
+            <pre><code>// C Program to illustrate operator associativity
+#include &lt;stdio.h&gt;
+
+int main() {
+    printf("100 / 5 % 2 = %d", 100 / 5 % 2);
+    return 0;
+}</code></pre>
+        </div>
+        <p><strong>Output:</strong> 100 / 5 % 2 = 0</p>
+
+        <h3>3. Precedence and Associativity in Complex Expressions</h3>
+        <div class="code-container">
+            <h3>Sample Code</h3>
+            <pre><code>// C Program to illustrate precedence and associativity
+#include &lt;stdio.h&gt;
+
+int main() {
+    int exp = 100 + 200 / 10 - 3 * 10;
+    printf("100 + 200 / 10 - 3 * 10 = %d", exp);
+    return 0;
+}</code></pre>
+        </div>
+        <p><strong>Output:</strong> 100 + 200 / 10 – 3 * 10 = 90</p>
+
+        <h2>Important Points</h2>
+        <ol>
+            <li>Associativity is only used when there are two operators of the same precedence. It doesn’t define the order in which operands of a single operator are evaluated.</li>
+            <li>We can use parentheses to change the evaluation order.</li>
+            <li>All operators with the same precedence have the same associativity.</li>
+            <li>Postfix <code>++</code> has higher precedence than prefix <code>++</code>, with different associativity.</li>
+            <li>The comma operator has the lowest precedence and should be used cautiously.</li>
+            <li>There’s no chaining of comparison operators in C, unlike Python.</li>
+        </ol>
+
+        <h3>Example of No Chaining in Comparison Operators</h3>
+        <div class="code-container">
+            <h3>Sample Code</h3>
+            <pre><code>// C Program to show lack of chaining in comparison operators
+#include &lt;stdio.h&gt;
+
+int main() {
+    int a = 10, b = 20, c = 30;
+    if (c > b > a)
+        printf("TRUE");
+    else
+        printf("FALSE");
+    return 0;
+}</code></pre>
+        </div>
+        <p><strong>Output:</strong> FALSE</p>
+
+        <h2>Conclusion</h2>
+        <p>Knowing operator precedence and associativity helps write efficient code and understand code from other programmers without excessive use of parentheses.</p>
+    </div>
+
+
+<script>
+    function toggleDropdown(id) {
+        const dropdown = document.getElementById(id);
+        dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
+
+{% endblock %}

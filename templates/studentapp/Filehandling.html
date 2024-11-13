@@ -1,0 +1,249 @@
+{% extends 'navbar/studentnavbar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/studenthomepage.css' %}">
+
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>C Programming Language Tutorial</h2>
+        <ul>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown1')"> FILE Handling</button>
+                <ul class="dropdown-content" id="dropdown1" style="display: none;">
+                   
+                </ul>
+            </li>
+           
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <style>
+        h1, h2 {
+            color: #333;
+        }
+        p, li {
+            margin: 10px 0;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #322f2f;
+        }
+        table, th, td {
+            border: 1px solid #504b4b;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #403d3d;
+        }
+        .code-container {
+            background-color: #292827ec;
+            padding: 10px;
+            border-radius: 5px;
+            color: #e0d9d5;
+            font-family: monospace;
+            margin-top: 20px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        h1 {
+            position: relative;
+            padding: 20px 0;
+        }
+        h1::after, h1::before {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #e7962b;
+            position: absolute;
+            left: 0;
+        }
+        h1::after {
+            bottom: 0;
+        }
+        h1::before {
+            top: 0;
+        }
+        .centered-responsive-image {
+            display: block;
+            margin: 20px auto;
+            width: 120%;
+            max-width: 700px;
+            height: 400px;
+        }
+    </style>
+       <h1>File Handling in C</h1>
+
+       <p>File handling in C allows you to create, read, write, and delete files through your program. It’s an essential feature for applications that need to store data persistently. Here’s a clear breakdown of file handling in C, including the key functions, modes, and operations you need to understand.</p>
+       <img src="{% static 'images/files2c.png' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+       <h2>1. File Operations in C</h2>
+       <p>The common file operations in C are:</p>
+       <ul>
+           <li>Creating a file: Open a file for writing, which creates a new file if it doesn’t exist.</li>
+           <li>Reading from a file: Open a file for reading to fetch stored data.</li>
+           <li>Writing to a file: Open a file for writing to save new data or update existing data.</li>
+           <li>Closing a file: Close a file to ensure data integrity and free resources.</li>
+       </ul>
+       
+       <h2>2. File Pointer (<code>FILE*</code>)</h2>
+       <p>In C, a file is managed using a <code>FILE*</code> pointer. This pointer, when associated with a file, helps us perform read/write operations.</p>
+       
+       <div class="code-container">
+        <h3>Sample code</h3>
+       <pre><code>FILE *filePointer;</code></pre>
+       </div>
+      
+       
+       <h2>3. Opening a File</h2>
+       <p>You use the <code>fopen()</code> function to open a file in C. This function takes two arguments:</p>
+       <ul>
+           <li><b>File name</b>: The name of the file, as a string (e.g., <code>"data.txt"</code>).</li>
+           <li><b>Mode</b>: Specifies how you want to access the file (e.g., read, write).</li>
+       </ul>
+       
+       <h3>Common Modes for <code>fopen()</code></h3>
+       <table border="1">
+           <tr><th>Mode</th><th>Description</th></tr>
+           <tr><td>"r"</td><td>Open a file for reading. Returns NULL if the file doesn't exist.</td></tr>
+           <tr><td>"w"</td><td>Open a file for writing. Creates a new file if it doesn't exist, or overwrites it if it does.</td></tr>
+           <tr><td>"a"</td><td>Open a file for appending. Data is added at the end of the file without overwriting it.</td></tr>
+           <tr><td>"r+"</td><td>Open a file for both reading and writing.</td></tr>
+           <tr><td>"w+"</td><td>Open a file for both reading and writing. Creates a new file if it doesn’t exist, or overwrites it if it does.</td></tr>
+           <tr><td>"a+"</td><td>Open a file for both reading and appending. Creates the file if it doesn’t exist.</td></tr>
+       </table>
+       
+       <div class="code-container">
+        <h3>Sample code</h3>
+       <pre><code>FILE *filePointer;
+       filePointer = fopen("data.txt", "r");
+       if (filePointer == NULL) {
+           printf("Error opening file.\n");
+       }</code></pre>
+       </div>
+      
+       
+       <h2>4. Closing a File</h2>
+       <p>The <code>fclose()</code> function closes a file and helps free up resources.</p>
+       
+       <div class="code-container">
+        <h3>Sample code</h3>
+       <pre><code>fclose(filePointer);</code></pre>
+       </div>
+      
+       <h2>5. Writing to a File</h2>
+       <p>There are several functions to write to files in C:</p>
+       <ul>
+           <li><code>fputc()</code>: Writes a single character to a file.</li>
+           <li><code>fputs()</code>: Writes a string to a file.</li>
+           <li><code>fprintf()</code>: Writes formatted output to a file, similar to <code>printf</code>.</li>
+       </ul>
+       
+       <div class="code-container">
+        <h3>Sample code</h3>
+       <pre><code>fputc('A', filePointer);</code></pre>
+       </div>
+     
+       
+       <div class="code-container">
+        <h3>Sample code</h3>
+       <pre><code>fputs("Hello, World!", filePointer);</code></pre>
+       </div>
+       
+       
+       <div class="code-container">
+        <h3>Sample code</h3>
+       <pre><code>fprintf(filePointer, "Name: %s, Age: %d\n", name, age);</code></pre>
+       </div>
+       
+       
+       <h2>6. Reading from a File</h2>
+       <p>To read data, you can use:</p>
+       <ul>
+           <li><code>fgetc()</code>: Reads a single character from a file.</li>
+           <li><code>fgets()</code>: Reads a string from a file.</li>
+           <li><code>fscanf()</code>: Reads formatted data, similar to <code>scanf</code>.</li>
+       </ul>
+       
+       <div class="code-container">
+        <h3>Sample code</h3>
+       <pre><code>char ch = fgetc(filePointer);</code></pre>
+       </div>
+      
+       
+       <div class="code-container">
+        <h3>Sample code</h3>
+       <pre><code>char str[50];
+       fgets(str, 50, filePointer);</code></pre>
+       </div>
+      
+       
+       <div class="code-container">
+        <h3>Sample code</h3>
+       <pre><code>fscanf(filePointer, "%s %d", name, &age);</code></pre>
+       </div>
+    
+       
+       <h2>7. Example: File Writing and Reading</h2>
+       <p>Here’s a simple example that writes data to a file and then reads it back.</p>
+       
+       <div class="code-container">
+        <h3>Sample code</h3>
+       <pre><code>#include &lt;stdio.h&gt;
+       
+       int main() {
+           FILE *filePointer;
+       
+           // Writing to file
+           filePointer = fopen("example.txt", "w");
+           if (filePointer == NULL) {
+               printf("Error opening file for writing.\n");
+               return 1;
+           }
+           fprintf(filePointer, "Hello, File Handling in C!\n");
+           fclose(filePointer);
+       
+           // Reading from file
+           filePointer = fopen("example.txt", "r");
+           if (filePointer == NULL) {
+               printf("Error opening file for reading.\n");
+               return 1;
+           }
+           char ch;
+           while ((ch = fgetc(filePointer)) != EOF) {
+               putchar(ch);  // Display each character
+           }
+           fclose(filePointer);
+       
+           return 0;
+       }</code></pre>
+       </div>
+       <img src="{% static 'images/files1c.png' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+       
+       <h2>8. Error Handling in File Operations</h2>
+       <p>Always check if a file was successfully opened. If <code>fopen()</code> returns NULL, it means the file couldn't be opened (e.g., it doesn’t exist or there’s a permission issue).</p>
+       
+       <h2>9. Additional File Operations</h2>
+       <ul>
+           <li><b>Removing a File</b>: Use <code>remove("filename")</code> to delete a file.</li>
+           <li><b>Renaming a File</b>: Use <code>rename("oldname", "newname")</code> to rename a file.</li>
+       </ul>
+      
+    </div>
+    
+</div>
+
+<!-- JavaScript for Dropdown Functionality -->
+<script>
+    function toggleDropdown(id) {
+        var dropdown = document.getElementById(id);
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+{% endblock %}

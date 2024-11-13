@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APEKSHA LEARN </title>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lato:wght@400;700&family=Open+Sans:wght@400;700&family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+    
+    <style>
+        /* Add this CSS for flipping animation */
+        .flip {
+            animation: flip 1s forwards;
+        }
+
+        @keyframes flip {
+            0% {
+                transform: perspective(1000px) rotateY(25deg);
+            }
+            50% {
+                transform: perspective(1000px) rotateY(180deg);
+            }
+            100% {
+                transform: perspective(1000px) rotateY(20deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="carousel-wrapper">
+            <div class="carousel-container">
+                <div class="carousel">
+                    <div class="slide"><img src="{% static 'images/slidee1.jpeg' %}" alt="Slide 1"></div>
+                    <div class="slide"><img src="{% static 'images/slide3.jpg' %}" alt="Slide 2"></div>
+                    <div class="slide"><img src="{% static 'images/slide2.jpg' %}" alt="Slide 3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1 class="plush-font"> ( Apeksha LearN ></h1>
+            <p>LET'S MAKE HOPE</p>
+            <a href="{% url 'adminapp:projecthomepage2' %}" class="btn" id="loadButton">Let's GO</a>
+
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('loadButton').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default anchor behavior
+            const button = this;
+
+            // Add the flip class to the body or a specific element you want to flip
+            document.body.classList.add('flip');
+
+            // Wait for 2 seconds, then redirect to the new page
+            setTimeout(function() {
+                window.location.href = button.href; 
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

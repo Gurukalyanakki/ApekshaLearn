@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/projectnav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+   <!-- Include additional styles here -->
+    <title>Apeksha Learn</title>
+</head>
+
+<body>
+    <!-- Main header with background image -->
+    <div class="header" style="background-image: url('{% static 'images/apeksha1.jpg' %}'); background-size: cover; background-position: center;">
+        <h1 style="color: #FF4500; font-size: 3em;">Apeksha Learn</h1>
+        <p style="color: #FFA500; font-weight: bold;">LET'S MAKE HOPE</p>
+    </div>
+    
+    <!-- Top navigation bar with buttons -->
+    <div class="topnav">
+        <button onclick="location.href='{% url 'adminapp:projecthomepage' %}'" style="font-size: 14px; padding: 10px 18px; border-radius: 15px; border: none; background-color: #db6d1e; color: white; float: left; margin-left: 2mm;">Home</button>
+       
+        <!-- User authentication links -->
+        {% if user.is_authenticated %}
+            <span class="nav-link" style="margin-right: 10px; color: white;">Welcome, {{ user.username }}</span>
+            <a href="{% url 'adminapp:logout' %}" class="btn btn-danger" style="background-color: #db6d1e; color: white; padding: 10px 18px; border-radius: 15px; border: none;">Logout</a>
+        {% else %}
+        <button onclick="location.href='{% url 'adminapp:UserRegisterPageCall' %}'" style="font-size: 14px; padding: 10px 18px; border-radius: 15px; border: none; background-color: #db6d1e; color: white; float: right; margin-right: 2mm;">Signup</button>
+        <button onclick="location.href='{% url 'adminapp:UserLoginLogic' %}'" style="font-size: 14px; padding: 10px 18px; border-radius: 15px; border: none; background-color: #db6d1e; color: white; float: right; margin-right: 3mm;">Login</button>
+        
+        {% endif %}
+    </div>
+
+    {% block content %}
+    <!-- Default content goes here -->
+    {% endblock %}
+    
+    <footer>
+        <!-- Your footer content -->
+    </footer>
+</body>
+</html>

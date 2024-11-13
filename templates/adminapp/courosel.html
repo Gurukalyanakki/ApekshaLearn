@@ -1,0 +1,250 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enlarged Static Carousel</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #201f1f;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background-color: #eb6d3f; /* Fire theme color */
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        /* Carousel Container with Fire Glow Effect */
+        .carousel {
+            position: relative;
+            width: 1450px; /* Increased container size */
+            height: 700px;
+            overflow: hidden;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Video Background */
+        .carousel video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Glowing Fire Colors Animation */
+        @keyframes fire-glow {
+            60% {
+                box-shadow: 0 0 20px 5px rgba(236, 150, 70, 0.5), 0 0 30px 10px rgba(255, 140, 0, 0.4);
+            }
+        }
+
+        /* Slide and Image Styles */
+        .slide {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .slide img {
+            width: 600px; /* Enlarged image size */
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .slide img.zoomed {
+            transform: scale(1.2); /* Zoom effect */
+        }
+
+        /* Active Slide */
+        .slide.active {
+            display: flex;
+        }
+
+        /* Slide Button */
+        .slide button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            background-color: #f5865d; /* Fire theme color */
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        /* Navigation Controls */
+        .carousel-controls {
+            position: absolute;
+            top: 70%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-control {
+            background: rgba(223, 112, 34, 0.7); /* Fire theme color */
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: #fff;
+            border-radius: 50%;
+        }
+
+        /* Indicator Dots */
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .carousel-indicator {
+            width: 15px;
+            height: 15px;
+            background-color: #ec8415; /* Fire theme color */
+            border-radius: 50%;
+            margin: 0 6px;
+            cursor: pointer;
+        }
+
+        .carousel-indicator.active {
+            background-color: #ff8c00; /* Highlight color */
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #fff;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+
+        /* Fire-themed Outline for Carousel Images */
+        .carousel img {
+            border: 5px solid rgba(237, 121, 38, 0.8); /* Fire-colored border */
+            
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .carousel img.zoomed {
+            transform: scale(1.2); /* Zoom effect */
+            box-shadow: 0 0 25px  rgba(237, 144, 38, 0.8), 
+                        0 0 50px rgba(255, 140, 0, 0.8), 
+                        0 0 75px  rgba(237, 144, 38, 0.8); /* Enhanced glow on zoom */
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Main Content with Carousel -->
+<div class="carousel">
+    <!-- Background Video -->
+    <video autoplay muted loop>
+        <source src="{% static 'videos/login.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Slide 1 -->
+    <div class="slide active">
+        <img src="{% static 'images/coslide1.jpg' %}" alt="Car 1" onclick="toggleZoom(this)">
+        <button onclick="window.location.href='{% url 'studentapp:studenthomepage' %}'">C programming</button>
+    </div>
+    <!-- Slide 2 -->
+    <div class="slide">
+        <img src="{% static 'images/coslide2.webp' %}" alt="Car 2" onclick="toggleZoom(this)">
+        <button onclick="window.location.href=''">Python programming</button>
+
+    </div>
+    <div class="slide">
+        <img src="{% static 'images/html.jpeg' %}" alt="Car 3" onclick="toggleZoom(this)">
+        <button onclick="window.location.href=''">HTML programming</button>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="carousel-controls">
+        <button class="carousel-control" onclick="prevSlide()">❮</button>
+        <button class="carousel-control" onclick="nextSlide()">❯</button>
+    </div>
+</div>
+
+<!-- Indicator Dots Below Carousel -->
+<div class="carousel-indicators">
+    <span class="carousel-indicator active" onclick="currentSlide(0)"></span>
+    <span class="carousel-indicator" onclick="currentSlide(1)"></span>
+</div>
+
+<!-- Footer -->
+
+<script>
+    let currentSlideIndex = 0;
+
+    function showSlide(index) {
+        const slides = document.querySelectorAll('.slide');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+
+        slides.forEach((slide, idx) => {
+            slide.classList.toggle('active', idx === index);
+        });
+
+        indicators.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === index);
+        });
+    }
+
+    function nextSlide() {
+        currentSlideIndex = (currentSlideIndex + 1) % 2; // Adjusted for the current slides count
+        showSlide(currentSlideIndex);
+    }
+
+    function prevSlide() {
+        currentSlideIndex = (currentSlideIndex - 1 + 2) % 2; // Adjusted for the current slides count
+        showSlide(currentSlideIndex);
+    }
+
+    function currentSlide(index) {
+        currentSlideIndex = index;
+        showSlide(currentSlideIndex);
+    }
+
+    function toggleZoom(imgElement) {
+        imgElement.classList.toggle('zoomed');
+    }
+</script>
+
+</body>
+</html>

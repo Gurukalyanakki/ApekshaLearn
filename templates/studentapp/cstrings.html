@@ -1,0 +1,746 @@
+{% extends 'navbar/studentnavbar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/studenthomepage.css' %}">
+
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>C Programming Language Tutorial</h2>
+        <ul>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown1')">Strings</button>
+                <ul class="dropdown-content" id="dropdown1" style="display: none;">
+                    <li><a class="dropdown-item" href="#">Array of strings</a></li>
+                    <li><a class="dropdown-item" href="#">c-library (string.h)</a></li>
+                    <li><a class="dropdown-item" href="#">String functions</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown2')">Pointers in C</button>
+                <ul class="dropdown-content" id="dropdown2" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:cpointers' %}">Application of pointers in C</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <style>
+        h1, h2 {
+            color: #333;
+        }
+        p, li {
+            margin: 10px 0;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #322f2f;
+        }
+        table, th, td {
+            border: 1px solid #504b4b;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #403d3d;
+        }
+        .code-container {
+            background-color: #292827ec;
+            padding: 10px;
+            border-radius: 5px;
+            color: #edebe6;
+            font-family: monospace;
+            margin-top: 20px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        h1 {
+            position: relative;
+            padding: 20px 0;
+        }
+        h1::after, h1::before {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #e7962b;
+            position: absolute;
+            left: 0;
+        }
+        h1::after {
+            bottom: 0;
+        }
+        h1::before {
+            top: 0;
+        }
+        .centered-responsive-image {
+            display: block;
+            margin: 20px auto;
+            width: 120%;
+            max-width: 800px;
+            height: 400px;
+        }
+    </style>
+       
+<h1>Understanding Strings in C Programming</h1>
+
+<p>A <strong>String</strong> in C programming is a sequence of characters terminated with a null character <code>'\0'</code>.</p>
+ <p>The C String is stored as an array of characters. The difference between a character array and a C string is that the string in C is terminated with a unique character <code>'\0'</code>.</p>
+
+<h2>String in C</h2>
+
+<h3>C String Declaration Syntax</h3>
+<p>Declaring a string in C is as simple as declaring a one-dimensional array. Below is the basic syntax for declaring a string.</p>
+<img src="{% static 'images/string.jpg' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+<div class="code-container">
+    char string_name[size];
+</div>
+<p>In the above syntax, <code>string_name</code> is any name given to the string variable and <code>size</code> is used to define the length of the string, i.e., the number of characters the string will store.</p>
+
+<h3>C String Initialization</h3>
+<p>A string in C can be initialized in different ways. Below are examples to declare a string with the name <code>str</code> and initialize it with "GeeksforGeeks".</p>
+
+<ol>
+    <li><strong>Assigning a String Literal without Size</strong>
+        <div class="code-container">
+            char str[] = "Apeksha";
+        </div>
+    </li>
+    <li><strong>Assigning a String Literal with a Predefined Size</strong>
+        <div class="code-container">
+            char str[50] = "Apeksha";
+        </div>
+    </li>
+    <li><strong>Assigning Character by Character with Size</strong>
+        <div class="code-container">
+            char str[14] = { 'a','p','e','k','s','h','a','\0'};
+        </div>
+    </li>
+    <li><strong>Assigning Character by Character without Size</strong>
+        <div class="code-container">
+            char str[] = { 'a','p','e','k','s','h','a','\0'};
+        </div>
+    </li>
+</ol>
+
+<h3>C String Example</h3>
+<div class="code-container">
+    <h3>Sample Code</h3>
+// C program to illustrate strings
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    // declare and initialize string
+    char str[] = "Apeksha";
+
+    // print string
+    printf("%s\n", str);
+
+    int length = 0;
+    length = strlen(str);
+
+    // displaying the length of string
+    printf("Length of string str is %d", length);
+
+    return 0;
+}
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-container">
+Apeksha<br>
+Length of string str is 5
+</div>
+
+<h2>Read a String Input From the User</h2>
+<div class="code-container">
+    <h3>Sample Code</h3>
+// C program to read string from user
+#include &lt;stdio.h&gt;
+
+int main() {
+    // declaring string
+    char str[50];
+    
+    // reading string
+    scanf("%s", str);
+    
+    // print string
+    printf("%s", str);
+
+    return 0;
+}
+</div>
+
+<p><strong>Input:</strong> Apeksha</p>
+<p><strong>Output:</strong> Apeksha</p>
+
+<h3>How to Read a String Separated by Whitespaces in C</h3>
+<p>We can use multiple methods to read a string separated by spaces in C.</p>
+
+<h4>Example of String Input using <code>fgets()</code></h4>
+<div class="code-container">
+    <h3>Sample Code</h3>
+// C program to illustrate fgets()
+#include &lt;stdio.h&gt;
+#define MAX 50
+
+int main() {
+    char str[MAX];
+
+    // MAX Size if 50 defined
+    fgets(str, MAX, stdin);
+
+    printf("String is: \n");
+
+    // Displaying Strings using Puts
+    puts(str);
+
+    return 0;
+}
+</div>
+
+<p><strong>Input:</strong> Apeksha</p>
+<p><strong>Output:</strong></p>
+<div class="code-container">
+String is:<br>
+Apeksha
+</div>
+
+<h4>Example of String Input using Scanset</h4>
+<div class="code-container">
+    <h3>Sample Code</h3>
+// C Program to take string separated by whitespace using scanset characters
+#include &lt;stdio.h&gt;
+
+int main() {
+    char str[20];
+
+    // using scanset in scanf
+    scanf("%[^\n]s", str);
+
+    // printing read string
+    printf("%s", str);
+
+    return 0;
+}
+</div>
+
+<p><strong>Input:</strong> Apeksha</p>
+<p><strong>Output:</strong> Apeksha</p>
+
+<h2>Standard C Library – String.h Functions</h2>
+<p>The C language comes bundled with <code>&lt;string.h&gt;</code> which contains some useful string-handling functions. Some of them are as follows:</p>
+
+<table>
+    <tr>
+        <th>Function Name</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><code>strlen(string_name)</code></td>
+        <td>Returns the length of string name.</td>
+    </tr>
+    <tr>
+        <td><code>strcpy(s1, s2)</code></td>
+        <td>Copies the contents of string s2 to string s1.</td>
+    </tr>
+    <tr>
+        <td><code>strcmp(str1, str2)</code></td>
+        <td>Compares the first string with the second string. If strings are the same it returns 0.</td>
+    </tr>
+    <tr>
+        <td><code>strcat(s1, s2)</code></td>
+        <td>Concatenates s1 string with s2 string and the result is stored in the first string.</td>
+    </tr>
+    <tr>
+        <td><code>strlwr()</code></td>
+        <td>Converts string to lowercase.</td>
+    </tr>
+    <tr>
+        <td><code>strupr()</code></td>
+        <td>Converts string to uppercase.</td>
+    </tr>
+    <tr>
+        <td><code>strstr(s1, s2)</code></td>
+        <td>Finds the first occurrence of s2 in s1.</td>
+    </tr>
+</table>
+
+<h1>Array of Strings in C Programming</h1>
+
+<p>In C programming, a <strong>String</strong> is a one-dimensional array of characters and is defined as an array of characters.</p>
+<p> However, an <strong>array of strings</strong> in C is a two-dimensional array of character types. Each string is terminated with a null character <code>(\0)</code>, and this structure is an application of a 2D array.</p>
+
+<h3>Syntax:</h3>
+<div class="code-container">
+    char variable_name[r][m] = {list of strings};
+</div>
+
+<p>Here:</p>
+<ul>
+    <li><code>variable_name</code> is the name of the variable in C.</li>
+    <li><code>r</code> is the maximum number of string values that can be stored in the string array.</li>
+    <li><code>m</code> is the maximum number of character values that can be stored in each string.</li>
+</ul>
+
+<h2>Example:</h2>
+<div class="code-container">
+    <h3>Sample Code</h3>
+// C Program to print Array of strings<br>
+#include &lt;stdio.h&gt;<br><br>
+
+// Driver code<br>
+int main()<br>
+{<br>
+&nbsp;&nbsp;char arr[3][10] = {"Apeksha", "Apekshas", "Apekshafor"};<br>
+&nbsp;&nbsp;printf("String array Elements are:\n");<br><br>
+&nbsp;&nbsp;for (int i = 0; i &lt; 3; i++) <br>
+&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;printf("%s\n", arr[i]);<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;return 0;<br>
+}
+</div>
+
+<p><strong>Output:</strong></p>
+<div class="code-container">
+String array Elements are:<br>
+Apeksha<br>
+Apekshas<br>
+Apekshafor
+</div>
+
+<h2>Array of Pointers of Strings</h2>
+<p>In C, we can use an array of pointers instead of a 2D character array.</p>
+<p> This uses less memory as it stores pointers to the string literals rather than allocating space for each character in a predefined size.</p>
+
+<h3>Syntax:</h3>
+<div class="code-container">
+    char *arr[] = {"Apeksha", "Apekshas", "Apekshafor"};
+</div>
+
+<h2>Example of Array of Pointers</h2>
+
+<div class="code-container">
+    <h3>Sample Code</h3>
+// C Program to print Array of Pointers<br>
+#include &lt;stdio.h&gt;<br><br>
+
+// Driver code<br>
+int main()<br>
+{<br>
+&nbsp;&nbsp;char *arr[] = {"Apeksha", "Apekshas", "Apekshafor"};<br>
+&nbsp;&nbsp;printf("String array Elements are:\n");<br><br>
+&nbsp;&nbsp;for (int i = 0; i &lt; 3; i++) <br>
+&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;printf("%s\n", arr[i]);<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;return 0;<br>
+}
+</div>
+
+<p><strong>Output:</strong></p>
+<div class="code-container">
+String array Elements are:<br>
+Apeksha<br>
+Apekshas<br>
+Apekshafor
+
+
+ 
+    </div>
+    <h1>String.h Library Functions in C</h1>
+
+<p>The <code>string.h</code> is a standard header file in the C language that contains functions for manipulating strings (arrays of characters). </p>
+<p>The <code>&lt;string.h&gt;</code> header file contains some useful string functions that can be directly used in a program by invoking the <code>#include</code> preprocessor directive.</p>
+
+<h3>Syntax:</h3>
+<div class="code-container">
+#include &lt;string.h&gt;
+</div>
+
+<h2>Example:</h2>
+<div class="code-container">
+    <h3>Sample Code</h3>
+// C program to demonstrate the use of C string.h header file<br>
+#include &lt;stdio.h&gt;<br>
+#include &lt;string.h&gt;<br><br>
+
+int main()<br>
+{<br>
+&nbsp;&nbsp;// initializing some strings<br>
+&nbsp;&nbsp;char str1[20] = "Apekshafor";<br>
+&nbsp;&nbsp;char str2[20] = "Apeksha";<br><br>
+
+&nbsp;&nbsp;// using strlen(), strcat()<br>
+&nbsp;&nbsp;printf("Str1: %s\n", str1);<br>
+&nbsp;&nbsp;printf("Length of Str1 before concatenation: %d\n", strlen(str1));<br>
+&nbsp;&nbsp;strcat(str1, str2); // concatenating str1 and str2<br>
+&nbsp;&nbsp;printf("Str1: %s\n", str1);<br><br>
+&nbsp;&nbsp;return 0;<br>
+}
+</div>
+
+<p><strong>Output:</strong></p>
+<div class="code-container">
+Str1: Apekshafor<br>
+Length of Str1 before concatenation: 9<br>
+Str1: ApekshaforApeksha
+</div>
+
+<h2>C <code>string.h</code> Library Functions</h2>
+<p>The <code>&lt;string.h&gt;</code> header file contains the following functions:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Function Name</th>
+            <th>Function Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>strlen()</code></td>
+            <td>Returns the length of the string.</td>
+        </tr>
+        <tr>
+            <td><code>strcpy()</code></td>
+            <td>Copy one string to another.</td>
+        </tr>
+        <tr>
+            <td><code>strncpy()</code></td>
+            <td>Copy the first n characters of one string to another.</td>
+        </tr>
+        <tr>
+            <td><code>strcat()</code></td>
+            <td>Concatenates two strings.</td>
+        </tr>
+        <tr>
+            <td><code>strncat()</code></td>
+            <td>Concatenates the first n characters of one string to another.</td>
+        </tr>
+        <tr>
+            <td><code>strcmp()</code></td>
+            <td>Compares two strings.</td>
+        </tr>
+        <tr>
+            <td><code>strncmp()</code></td>
+            <td>Compares the first n characters of two strings.</td>
+        </tr>
+        <tr>
+            <td><code>strchr()</code></td>
+            <td>Finds the first occurrence of the given character in the string.</td>
+        </tr>
+        <tr>
+            <td><code>strrchr()</code></td>
+            <td>Finds the last occurrence of the given character in the string.</td>
+        </tr>
+        <tr>
+            <td><code>strstr()</code></td>
+            <td>Finds the given substring in the string.</td>
+        </tr>
+        <tr>
+            <td><code>strcspn()</code></td>
+            <td>Returns the span of the source string not containing any character of the given string.</td>
+        </tr>
+        <tr>
+            <td><code>strspn()</code></td>
+            <td>Returns the span of the source string containing only the characters of the given string.</td>
+        </tr>
+        <tr>
+            <td><code>strpbrk()</code></td>
+            <td>Finds the first occurrence of any of the characters of the given string in the source string.</td>
+        </tr>
+        <tr>
+            <td><code>strtok()</code></td>
+            <td>Splits the given string into tokens based on a delimiter character.</td>
+        </tr>
+        <tr>
+            <td><code>strcoll()</code></td>
+            <td>Compares two strings that are passed.</td>
+        </tr>
+        <tr>
+            <td><code>memset()</code></td>
+            <td>Initializes a block of memory with a given character.</td>
+        </tr>
+        <tr>
+            <td><code>memcmp()</code></td>
+            <td>Compares two blocks of memory.</td>
+        </tr>
+        <tr>
+            <td><code>memcpy()</code></td>
+            <td>Copies two blocks of memory.</td>
+        </tr>
+        <tr>
+            <td><code>memmove()</code></td>
+            <td>Moves two blocks of memory.</td>
+        </tr>
+        <tr>
+            <td><code>memchr()</code></td>
+            <td>Finds the given character in a block of memory.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Example:</h2>
+<div class="code-container">
+    <h3>Sample Code</h3>
+// C program to demonstrate the use of different functions of string.h library<br>
+#include &lt;stdio.h&gt;<br>
+#include &lt;string.h&gt;<br><br>
+
+// defining the common size of the string arrays<br>
+#define size 50<br><br>
+
+int main()<br>
+{<br>
+&nbsp;&nbsp;char destString[size] = "Apekshafor";<br>
+&nbsp;&nbsp;char sourceString[size] = "Apeksha";<br>
+&nbsp;&nbsp;char tempDestString[size];<br><br>
+
+&nbsp;&nbsp;printf("Length of Destination String: %d\n", strlen(destString));<br><br>
+
+&nbsp;&nbsp;// copying sourceString to tempDestString using strcpy()<br>
+&nbsp;&nbsp;strcpy(tempDestString, sourceString);<br>
+&nbsp;&nbsp;printf("tempDestString after strcpy(): %s\n", tempDestString);<br><br>
+
+&nbsp;&nbsp;// concatenating source to destination using strcat()<br>
+&nbsp;&nbsp;strcat(destString, sourceString);<br>
+&nbsp;&nbsp;printf("destString after Concatenation: %s\n", destString);<br><br>
+
+&nbsp;&nbsp;// comparison using strcmp()<br>
+&nbsp;&nbsp;printf("Comparing destString with sourceString: %d\n", strcmp(destString, sourceString));<br><br>
+
+&nbsp;&nbsp;printf("Comparing first 5 characters: %d\n", strncmp(destString, sourceString, 5));<br><br>
+
+&nbsp;&nbsp;// searching substring using strstr()<br>
+&nbsp;&nbsp;printf("Searching sourceString in destString: %s\n", strstr(destString, sourceString));<br><br>
+
+&nbsp;&nbsp;return 0;<br>
+}
+</div>
+
+<p><strong>Output:</strong></p>
+<div class="code-container">
+Length of Destination String: 9<br>
+tempDestString after strcpy(): Apeksha<br>
+destString after Concatenation: ApekshaforApeksha<br>
+Comparing destString with sourceString: 102<br>
+Comparing first 5 characters: 0<br>
+Searching sourceString in destString: ApekshaforApeksha
+
+
+    
+</div>
+<h1>C String Functions</h1>
+<p>The C string functions are built-in functions that can be used for various operations and manipulations on strings. These string functions can be used to perform tasks such as string copy, concatenation, comparison, length, etc. The &lt;string.h&gt; header file contains these string functions.</p>
+
+<h2>String Functions in C</h2>
+<p>Some of the commonly used string functions in C are as follows:</p>
+<img src="{% static 'images/stringlib.png' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+<h3>1. strcat() Function</h3>
+<p>The <code>strcat()</code> function in C is used for string concatenation. It will append a copy of the source string to the end of the destination string.</p>
+
+<table border="1">
+    <tr>
+        <th>Syntax</th>
+        <td><code>char* strcat(char* dest, const char* src);</code></td>
+    </tr>
+    <tr>
+        <th>Parameters</th>
+        <td>
+            <ul>
+                <li><code>dest</code>: Destination string</li>
+                <li><code>src</code>: Source string</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <th>Return Value</th>
+        <td>The <code>strcat()</code> function returns a pointer to the <code>dest</code> string.</td>
+    </tr>
+</table>
+
+<div class="code-container">
+    <h3>Sample Code</h3>
+    <pre>
+#include &lt;stdio.h&gt;
+
+int main() {
+    char dest[50] = "This is an";
+    char src[50] = " example";
+
+    printf("dest Before: %s\n", dest);
+
+    strcat(dest, src);
+
+    printf("dest After: %s", dest);
+
+    return 0;
+}
+    </pre>
+</div>
+
+<h3>Output</h3>
+<pre>
+dest Before: This is an
+dest After: This is an example
+</pre>
+
+<h3>2. strlen() Function</h3>
+<p>The <code>strlen()</code> function calculates the length of a given string. It doesn’t count the null character ‘\0’.</p>
+
+<table border="1">
+    <tr>
+        <th>Syntax</th>
+        <td><code>int strlen(const char *str);</code></td>
+    </tr>
+    <tr>
+        <th>Parameters</th>
+        <td><code>str</code>: It represents the string variable whose length we have to find.</td>
+    </tr>
+    <tr>
+        <th>Return Value</th>
+        <td>The <code>strlen()</code> function returns the length of the string.</td>
+    </tr>
+</table>
+
+<div class="code-container">
+    <h3>Sample Code</h3>
+    <pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char str[] = "ApekshaForApeksha";
+
+    size_t length = strlen(str);
+
+    printf("String: %s\n", str);
+    printf("Length: %zu\n", length);
+
+    return 0;
+}
+    </pre>
+</div>
+
+<h3>Output</h3>
+<pre>
+String: ApekshaForApeksha
+Length: 16
+</pre>
+
+<h3>3. strcmp() Function</h3>
+<p>The <code>strcmp()</code> function in C compares two strings lexicographically.</p>
+
+<table border="1">
+    <tr>
+        <th>Syntax</th>
+        <td><code>int strcmp(const char *str1, const char *str2);</code></td>
+    </tr>
+    <tr>
+        <th>Parameters</th>
+        <td>
+            <ul>
+                <li><code>str1</code>: The first string to compare</li>
+                <li><code>str2</code>: The second string to compare</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <th>Return Value</th>
+        <td>Returns 0 if equal, &lt;0 if str1 &lt; str2, &gt;0 if str1 &gt; str2.</td>
+    </tr>
+</table>
+
+<div class="code-container">
+    <h3>Sample Code</h3>
+    <pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char str1[] = "Apeksha";
+    char str2[] = "For";
+    char str3[] = "Apeksha";
+
+    int result1 = strcmp(str1, str2);
+    int result2 = strcmp(str2, str3);
+    int result3 = strcmp(str1, str1);
+
+    printf("Comparison of str1 and str2: %d\n", result1);
+    printf("Comparison of str2 and str3: %d\n", result2);
+    printf("Comparison of str1 and str1: %d\n", result3);
+
+    return 0;
+}
+    </pre>
+</div>
+
+<h3>Output</h3>
+<pre>
+Comparison of str1 and str2: 1
+Comparison of str2 and str3: -1
+Comparison of str1 and str1: 0
+</pre>
+
+<h3>4. strcpy() Function</h3>
+<p>The <code>strcpy()</code> function is used to copy one string to another.</p>
+
+<table border="1">
+    <tr>
+        <th>Syntax</th>
+        <td><code>char* strcpy(char* dest, const char* src);</code></td>
+    </tr>
+    <tr>
+        <th>Parameters</th>
+        <td>
+            <ul>
+                <li><code>dest</code>: Destination array</li>
+                <li><code>src</code>: Source string</li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<div class="code-container">
+    <h3>Sample Code</h3>
+    <pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char source[] = "ApekshaForApeksha";
+    char dest[20];
+
+    strcpy(dest, source);
+
+    printf("Source: %s\n", source);
+    printf("Destination: %s\n", dest);
+
+    return 0;
+}
+    </pre>
+</div>
+
+<h3>Output</h3>
+<pre>
+Source: ApekshaForApeksha
+Destination: ApekshaForApeksha
+</pre>
+
+
+<!-- JavaScript for Dropdown Functionality -->
+<script>
+    function toggleDropdown(id) {
+        var dropdown = document.getElementById(id);
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+{% endblock %}

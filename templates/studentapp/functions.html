@@ -1,0 +1,504 @@
+{% extends 'navbar/studentnavbar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/studenthomepage.css' %}">
+
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>C Programming Language Tutorial</h2>
+        <ul>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown1')">Functions in C </button>
+                <ul class="dropdown-content" id="dropdown1">
+                    <li><a class="dropdown-item" href="#">User Defined functions</a></li>
+                    <li><a class="dropdown-item" href="#">Parameter Passing Techniques </a></li>
+                    <li><a class="dropdown-item" href="#">Function Prototype in C</a></li>
+                    <li><a class="dropdown-item" href="#">Main Function</a></li>
+                
+               
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown2')">Arrays</button>
+                <ul class="dropdown-content" id="dropdown2" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:carrays' %}">Arrays in C</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <style>
+            h1, h2 {
+                color: #333;
+            }
+            p, li {
+                margin: 10px 0;
+            }
+            table {
+                width: 80%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                background-color: #322f2f;
+            }
+            table, th, td {
+                border: 1px solid #504b4b;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #403d3d;
+            }
+            .code-container {
+                background-color: #292827ec;
+                padding: 10px;
+                border-radius: 5px;
+                color: #e0d9d5;
+                font-family: monospace;
+                margin-top: 20px;
+                white-space: pre;
+                overflow-x: auto;
+            }
+            h1 {
+                position: relative;
+                padding: 20px 0;
+            }
+            h1::after, h1::before {
+                content: "";
+                display: block;
+                width: 100%;
+                height: 2px;
+                background-color: #e7962b;
+                position: absolute;
+                left: 0;
+            }
+            h1::after {
+                bottom: 0;
+            }
+            h1::before {
+                top: 0;
+            }
+            .centered-responsive-image {
+                display: block;
+                margin: 20px auto;
+                width: 120%;
+                max-width: 700px;
+                height: 400px;
+            }
+        </style>
+</head>
+<body>
+
+<h1>Functions in C</h1>
+<p>A function in C is a set of statements that when called perform some specific tasks.</p>
+<p> It is the basic building block of a C program that provides modularity and code reusability.</p>
+
+<p>The programming statements of a function are enclosed within { } braces, having certain meanings and performing certain operations.</p>
+<p> They are also called subroutines or procedures in other languages.</p>
+<p>In this article, we will learn about functions, function definition, declaration, arguments and parameters, return values, and many more.</p>
+<img src="{% static 'images/functionc.webp' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+
+<h2>Syntax of Functions in C</h2>
+<p>The syntax of function can be divided into 3 aspects:</p>
+<ul>
+    <li>Function Declaration</li>
+    <li>Function Definition</li>
+    <li>Function Calls</li>
+</ul>
+
+<h2>Function Declarations</h2>
+<p>In a function declaration, we must provide the function name, its return type, and the number and type of its parameters.</p>
+<p> A function declaration tells the compiler that there is a function with the given name defined somewhere else in the program.</p>
+
+<p><strong>Syntax</strong></p>
+<div class="code-container">
+    return_type name_of_the_function (parameter_1, parameter_2);
+</div>
+<p>The parameter name is not mandatory while declaring functions. We can also declare the function without using the name of the data variables.</p>
+
+<p><strong>Example</strong></p>
+<div class="code-container">
+    int sum(int a, int b);  // Function declaration with parameter names<br>
+    int sum(int , int);      // Function declaration without parameter names
+</div>
+
+<h2>Function Definition</h2>
+<p>The function definition consists of actual statements which are executed when the function is called (i.e. when the program control comes to the function).</p>
+
+<div class="code-container">
+    return_type function_name (para1_type para1_name, para2_type para2_name)<br>
+    {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;// body of the function<br>
+    }
+</div>
+
+<h2>Function Call</h2>
+<p>A function call is a statement that instructs the compiler to execute the function. We use the function name and parameters in the function call.</p>
+
+<div class="code-container">
+    <h3>Sample Code</h3>
+    // C program to show function<br>
+    // call and definition<br>
+    #include &lt;stdio.h&gt;<br><br>
+    // Function that takes two parameters<br>
+    // a and b as inputs and returns<br>
+    // their sum<br>
+    int sum(int a, int b) <br>
+    { <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;return a + b;<br>
+    }<br><br>
+    // Driver code<br>
+    int main()<br>
+    {<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;int add = sum(10, 30);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;printf("Sum is: %d", add);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;return 0;<br>
+    }
+</div>
+
+<h2>Function Return Type</h2>
+<p>Function return type tells what type of value is returned after all function is executed. When we don’t want to return a value, we can use the void data type.</p>
+
+<div class="code-container">
+    int func(parameter_1,parameter_2);
+</div>
+
+<h2>Function Arguments</h2>
+<p>Function Arguments (also known as Function Parameters) are the data that is passed to a function.</p>
+
+<div class="code-container">
+    int function_name(int var1, int var2);
+</div>
+
+<h2>Types of Functions</h2>
+<p>There are two types of functions in C:</p>
+<ul>
+    <li>Library Functions</li>
+    <li>User Defined Functions</li>
+</ul>
+
+<h2>Example</h2>
+<div class="code-container">
+    <h3>Sample Code</h3>
+    // C program to implement<br>
+    #include &lt;math.h&gt;<br>
+    #include &lt;stdio.h&gt;<br><br>
+    int main()<br>
+    {<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;double Number = 49;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;double squareRoot = sqrt(Number);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;printf("The Square root of %.2lf = %.2lf", Number, squareRoot);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;return 0;<br>
+    }
+</div>
+
+<h2>Passing Parameters to Functions</h2>
+<p>We can pass arguments to the C function in two ways:</p>
+<ul>
+    <li>Pass by Value</li>
+    <li>Pass by Reference</li>
+</ul>
+
+<h2>Example of Pass by Value</h2>
+<div class="code-container">
+    <h3>Sample Code</h3>
+    #include &lt;stdio.h&gt;<br>
+    void swap(int var1, int var2)<br>
+    {<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;int temp = var1;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;var1 = var2;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;var2 = temp;<br>
+    }<br><br>
+    int main()<br>
+    {<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;int var1 = 3, var2 = 2;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;swap(var1, var2);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;return 0;<br>
+    }
+         
+    
+       
+ 
+    </div>
+
+    <h1>Parameter Passing in C</h1>
+
+    <p>In C, there are different ways in which parameter data can be passed into and out of methods and functions. Let us assume that a function <code>B()</code> is called from another function <code>A()</code>. In this case, <code>A</code> is called the “caller function” and <code>B</code> is called the “called function or callee function”. Also, the arguments which <code>A</code> sends to <code>B</code> are called actual arguments and the parameters of <code>B</code> are called formal arguments.</p>
+    
+    <h2>Terminology</h2>
+    <ul>
+        <li><strong>Formal Parameter:</strong> A variable and its type as it appears in the prototype of the function or method.</li>
+        <li><strong>Actual Parameter:</strong> The variable or expression corresponding to a formal parameter that appears in the function or method call in the calling environment.</li>
+    </ul>
+    
+    <h3>Modes:</h3>
+    <ul>
+        <li><strong>IN:</strong> Passes info from caller to the callee.</li>
+        <li><strong>OUT:</strong> Callee writes values in the caller.</li>
+        <li><strong>IN/OUT:</strong> The caller tells the callee the value of the variable, which the callee may update.</li>
+    </ul>
+    
+    <p>Parameter passing techniques in C, such as pass by value and pass by reference, are fundamental for controlling data flow. If you’re looking to master these concepts alongside their use in data structures, the C Programming Course Online with Data Structures provides in-depth lessons on function handling and parameter management.</p>
+    <img src="{% static 'images/parameterc.png' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+
+    <h2>Methods of Parameter Passing in C</h2>
+    <p>There are two ways in which we can pass the parameters to the function in C:</p>
+    
+    <h3>1. Pass By Value</h3>
+    <p>This method uses in-mode semantics. Changes made to formal parameters do not get transmitted back to the caller.</p>
+    
+    <div class="code-container">
+        <h3>Sample Code</h3>
+    <pre><code>
+    // C program to illustrate call by value
+    #include &lt;stdio.h&gt;
+    
+    void func(int a, int b)
+    {
+        a += b;
+        printf("In func, a = %d b = %d\n", a, b);
+    }
+    
+    int main(void)
+    {
+        int x = 5, y = 7;
+        func(x, y);
+        printf("In main, x = %d y = %d\n", x, y);
+        return 0;
+    }
+    </code></pre>
+    </div>
+    
+    <p><strong>Output:</strong><br>In func, a = 12 b = 7<br>In main, x = 5 y = 7</p>
+    
+    <h3>2. Pass by Pointers</h3>
+    <p>This technique uses a pointer. In function we pass the memory address (pointer) of a variable rather than passing the actual value of the variable.</p>
+    
+    <div class="code-container">
+        <h3>Sample Code</h3>
+    <pre><code>
+    // C program to demonstrate pass by pointer
+    #include &lt;stdio.h&gt;
+    
+    void modifyVal(int* myptr)
+    {
+        *myptr = *myptr + 5;
+    }
+    
+    int main()
+    {
+        int x = 5;
+        int* myptr = &x;
+        modifyVal(myptr);
+        printf("Modified value of x is: %d\n", x);
+        return 0;
+    }
+    </code></pre>
+    </div>
+    
+    <p><strong>Output:</strong><br>Modified value of x is: 10</p>
+    
+    <h2>Other Methods of Parameter Passing</h2>
+    <p>These techniques are older and were used in earlier programming languages like Pascal, Algol, and Fortran:</p>
+    
+    <h3>1. Pass by Result</h3>
+    <p>This method uses out-mode semantics. Just before control is transferred back to the caller, the value of the formal parameter is transmitted back to the actual parameter.</p>
+    
+    <h3>2. Pass by Value-Result</h3>
+    <p>This method uses in/out-mode semantics. It is a combination of Pass-by-Value and Pass-by-Result.</p>
+    
+    <h3>3. Pass by Name</h3>
+    <p>This technique is used in programming languages such as Algol.</p>
+    
+    <div class="code-container">
+    <pre><code>
+    procedure double(x);
+      real x;
+    begin 
+      x := x * 2
+    end;
+    </code></pre>
+    </div>
+    
+    <h2>Conclusion</h2>
+    <p>Parameter passing in C provides flexibility and control over how data flows through functions. Understanding these techniques is fundamental for managing program structure and data manipulation effectively.</p>
+    
+   
+<h1>The main() Function in C</h1>
+
+<p>The <code>main</code> function is an integral part of programming languages such as C, C++, and Java. The <code>main</code> function in C is the entry point where the execution of a program starts. It is a user-defined function that is mandatory for program execution, as the operating system begins execution with the <code>main()</code> function.</p>
+
+<h2>Syntax of C main() Function</h2>
+<div class="code-container">
+    <h3>Sample Code</h3>
+<pre><code>
+return_type main() {
+    // Statement 1;
+    // Statement 2;
+    // and so on..
+    return;
+}
+</code></pre>
+</div>
+
+<p>We can write the <code>main</code> function in many ways in C language as follows:</p>
+
+<ul>
+    <li><code>int main(){}</code> or <code>int main(void){}</code></li>
+    <li><code>main(){}</code> or <code>void main(){}</code> or <code>main(void){}</code> or <code>void main(void){}</code></li>
+</ul>
+
+<p>In the above notations, <code>int</code> means integer return type, and <code>void</code> return type means that it does not return any information. Similarly, <code>(void)</code> or <code>()</code> means it does not take any information.</p>
+
+<h2>Important Points about C main Function</h2>
+<ul>
+    <li>It is the function where the program’s execution starts.</li>
+    <li>Every program has exactly one main function.</li>
+    <li>The name of this function should be “<code>main</code>” and nothing else.</li>
+    <li>The <code>main</code> function always returns an integer value or <code>void</code>.</li>
+    <li>The <code>main</code> function is called by the OS, not by the user.</li>
+</ul>
+
+<h2>Types of C main Functions</h2>
+<ol>
+    <li>Main function with no arguments and void return type</li>
+    <li>Main function with no arguments and int return type</li>
+    <li>Main function with Command Line Arguments</li>
+</ol>
+<img src="{% static 'images/mainfunc.png' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+
+<h3>1. Main Function with No Arguments and Void Return Type</h3>
+<p>Here, we define a <code>main</code> function that prints a string. The <code>main</code> function is called by the operating system itself and then executes all statements inside this function.</p>
+
+<div class="code-container">
+    <h3>Sample Code</h3>
+<pre><code>
+void main()
+{
+   // Function body
+}
+</code></pre>
+</div>
+
+<p>This is equivalent to:</p>
+
+<div class="code-container">
+<pre><code>
+void main (void)
+{
+    // Function Body
+}
+</code></pre>
+</div>
+
+<p><strong>Example:</strong></p>
+<div class="code-container">
+    <h3>Sample Code</h3>
+<pre><code>
+// C Program to show main with no return type and no arguments
+#include &lt;stdio.h&gt;
+
+// Defining a main function
+void main()
+{
+    printf("Hello Apeksha!");
+}
+</code></pre>
+</div>
+
+<p><strong>Output:</strong><br>Hello Apeksha!</p>
+
+<p><strong>Note:</strong> The return type of <code>main</code> function according to the C standard should be <code>int</code> only. Even if your compiler can run <code>void main()</code>, it’s recommended to avoid it.</p>
+
+<h3>2. Main Function with No Arguments and int Return Type</h3>
+<p>In this example, we use the <code>int</code> return type in <code>main()</code> to indicate the program's exit status. The exit status communicates to the operating system whether the program ran successfully.</p>
+
+<div class="code-container">
+    <h3>Sample Code</h3>
+<pre><code>
+int main()
+{
+   // Function body
+}
+</code></pre>
+</div>
+
+<p>or</p>
+
+<div class="code-container">
+<pre><code>
+int main(void)
+{
+    // Function Body
+}
+</code></pre>
+</div>
+
+<p><strong>Example:</strong></p>
+<div class="code-container">
+    <h3>Sample Code</h3>
+<pre><code>
+// C Program to show main with int return type and no arguments
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    printf("Hello Apeksha!");
+    return 0;
+}
+</code></pre>
+</div>
+
+<p><strong>Output:</strong><br>Hello Apeksha!</p>
+
+<h3>3. Main Function with Command Line Arguments</h3>
+<p>In this example, we pass arguments to the <code>main()</code> function. These are called command-line arguments, given at the time of executing a program.</p>
+
+<p>The first argument <code>argc</code> is the argument count, which stores the number of command-line arguments passed. By default, its value is 1 when no argument is passed. The second argument <code>argv[]</code> is a char pointer array that stores all the command-line arguments.</p>
+
+<div class="code-container">
+    <h3>Sample Code</h3>
+<pre><code>
+int main(int argc, char* argv[]) {
+   // Function body
+}
+</code></pre>
+</div>
+
+<p><strong>Example:</strong></p>
+<div class="code-container">
+    <h3>Sample Code</h3>
+<pre><code>
+// C Program to illustrate main function with command line arguments
+#include &lt;stdio.h&gt;
+
+int main(int argc, char* argv[]) {
+    // Printing the count of arguments
+    printf("The value of argc is %d\n", argc);
+
+    // Printing each argument
+    for (int i = 0; i &lt; argc; i++) {
+        printf("%s \n", argv[i]);
+    }
+
+    return 0;
+}
+</code></pre>
+</div>
+
+<p><strong>Note:</strong> Run the program in the command prompt or terminal and pass any arguments. For example:</p>
+<p><code>main.exe Apeksha</code></p>
+<p>This will print each argument using a loop.</p>
+</div>
+
+<!-- JavaScript for Dropdown Functionality -->
+<script>
+    function toggleDropdown(id) {
+        var dropdown = document.getElementById(id);
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+{% endblock %}

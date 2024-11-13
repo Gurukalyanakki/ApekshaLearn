@@ -1,0 +1,635 @@
+{% extends 'navbar/studentnavbar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/studenthomepage.css' %}">
+
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>C Programming Language Tutorial</h2>
+        <ul>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown1')">Pointers</button>
+                <ul class="dropdown-content" id="dropdown1" style="display: none;">
+                    <li><a class="dropdown-item" href="#">How to decalare Pointers in C</a></li>
+                    <li><a class="dropdown-item" href="#">Double Pointer in C</a></li>
+                    <li><a class="dropdown-item" href="#">Application of Pointers in C</a></li>
+                    <li><a class="dropdown-item" href="#">NULL Pointer in C</a></li>
+                
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown2')">User-Defined Datatypes in C</button>
+                <ul class="dropdown-content" id="dropdown2" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:userdefineddatatypes' %}">Structures</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <style>
+        h1, h2 {
+            color: #333;
+        }
+        p, li {
+            margin: 10px 0;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #322f2f;
+        }
+        table, th, td {
+            border: 1px solid #504b4b;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #403d3d;
+        }
+        .code-container {
+            background-color: #292827ec;
+            padding: 10px;
+            border-radius: 5px;
+            color: #e0d9d5;
+            font-family: monospace;
+            margin-top: 20px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        h1 {
+            position: relative;
+            padding: 20px 0;
+        }
+        h1::after, h1::before {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #e7962b;
+            position: absolute;
+            left: 0;
+        }
+        h1::after {
+            bottom: 0;
+        }
+        h1::before {
+            top: 0;
+        }
+        .centered-responsive-image {
+            display: block;
+            margin: 20px auto;
+            width: 120%;
+            max-width: 700px;
+            height: 400px;
+        }
+    </style>
+    <h1>Pointers in C Programming Language</h1>
+
+    <p>Pointers are one of the core components of the C programming language. A pointer can be used to store the memory address of other variables, functions, or even other pointers.</p>
+    <p> The use of pointers allows low-level memory access, dynamic memory allocation, and many other functionalities in C.</p>
+    
+    <p>In this article, we will discuss C pointers in detail, their types, uses, advantages, and disadvantages with examples.</p>
+    <img src="{% static 'images/pointerc.png' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+
+    <div class="section">
+        <h2>What is a Pointer in C?</h2>
+        <p>A pointer is defined as a derived data type that can store the address of other C variables or a memory location. We can access and manipulate the data stored in that memory location using pointers.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Syntax of C Pointers</h2>
+        <p>The syntax of pointers is similar to variable declaration in C, but we use the <code>*</code> (dereferencing operator) in the pointer declaration.</p>
+        <div class="code-container">
+            <h3>Sample Code</h3>
+            <pre class="code">datatype *ptr;</pre>
+            <p><strong>Where:</strong></p>
+            <ul>
+                <li><code>ptr</code> is the name of the pointer.</li>
+                <li><code>datatype</code> is the type of data it is pointing to.</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>How to Use Pointers?</h2>
+        <p>The use of pointers in C can be divided into three steps:</p>
+        <ol>
+            <li>Pointer Declaration</li>
+            <li>Pointer Initialization</li>
+            <li>Pointer Dereferencing</li>
+        </ol>
+    </div>
+    
+    <div class="section">
+        <h3>Pointer Declaration</h3>
+        <p>In pointer declaration, we only declare the pointer but do not initialize it. Example:</p>
+        <div class="code-container">
+            <h3>Sample Code</h3>
+            <pre class="code">int *ptr;</pre>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h3>Pointer Initialization</h3>
+        <p>Pointer initialization is the process of assigning an initial value to the pointer. Example:</p>
+        <div class="code-container">
+            <h3>Sample Code</h3>
+            <pre class="code">int var = 10;
+    int *ptr;
+    ptr = &var;</pre>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h3>Pointer Dereferencing</h3>
+        <p>Dereferencing a pointer is the process of accessing the value stored in the memory address specified in the pointer. Example:</p>
+        <div class="code-container">
+            <h3>Sample Code</h3>
+            <pre class="code">printf("Value at *ptr = %d \n", *ptr);</pre>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Types of Pointers in C</h2>
+        <p>Pointers in C can be classified into several types, such as:</p>
+        <ul>
+            <li>Integer Pointers</li>
+            <li>Array Pointers</li>
+            <li>Structure Pointers</li>
+            <li>Function Pointers</li>
+            <li>Double Pointers</li>
+            <li>Null Pointers</li>
+            <li>Void Pointers</li>
+            <li>Wild Pointers</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>C Pointer Example</h2>
+        <p>Here’s a sample program illustrating pointer usage in C:</p>
+        <div class="code-container">
+            <h3>Sample Code</h3>
+            <pre class="code">// C program to illustrate Pointers
+    #include &lt;stdio.h&gt;
+    
+    void apeksha() {
+        int var = 10;
+        int *ptr = &var;
+        printf("Value at ptr = %p \n", ptr);
+        printf("Value at var = %d \n", var);
+        printf("Value at *ptr = %d \n", *ptr);
+    }
+    
+    int main() {
+        apeksha();
+        return 0;
+    }</pre>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Advantages of Pointers</h2>
+        <ul>
+            <li>Dynamic memory allocation and deallocation.</li>
+            <li>Efficient access to array or structure elements.</li>
+            <li>Useful in complex data structures such as linked lists, trees, etc.</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Disadvantages of Pointers</h2>
+        <ul>
+            <li>Pointers are prone to errors, leading to memory corruption.</li>
+            <li>Understanding and using pointers can be complex for beginners.</li>
+        </ul>
+    </div>
+       
+      
+    <h1>Double Pointers in C</h1>
+    <p>
+        A pointer to a pointer in C is used when we want to store the address of another pointer. The first pointer is used to store the address of a variable, and the second pointer is used to store the address of the first pointer, hence the term "double pointer."
+    </p>
+
+    <h2>Declaration of Pointer to a Pointer in C</h2>
+    <p>
+        Declaring a pointer to a pointer in C is similar to declaring a single pointer, except an additional '*' is required:
+    </p>
+    <img src="{% static 'images/dpointerc.png' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+
+    <div class="code-container">
+        <h3>Sample Code</h3>
+
+        <code>
+data_type_of_pointer **name_of_variable = &normal_pointer_variable;
+int val = 5;
+int *ptr = &val;    // storing address of val to pointer ptr.
+int **d_ptr = &ptr; // pointer to a pointer
+        </code>
+    </div>
+    <h3>Sample Code</h3>
+
+    <h2>Example of Double Pointer in C</h2>
+    <p>The code below demonstrates how to use a pointer to a pointer to access values:</p>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+
+        <code>
+// C program to demonstrate pointer to pointer
+#include &lt;stdio.h&gt;
+
+int main() {
+    int var = 789;
+    int* ptr2;   // pointer to var
+    int** ptr1;  // double pointer
+
+    // storing address of var in ptr2
+    ptr2 = &var;
+
+    // storing address of ptr2 in ptr1
+    ptr1 = &ptr2;
+
+    // Displaying value of var using both single and double pointers
+    printf("Value of var = %d\n", var);
+    printf("Value of var using single pointer = %d\n", *ptr2);
+    printf("Value of var using double pointer = %d\n", **ptr1);
+
+    return 0;
+}
+        </code>
+    </div>
+  
+
+    <h2>Size of Pointer to Pointer in C</h2>
+    <p>In C, a double pointer typically occupies the same amount of space as a normal pointer. This size can be confirmed with the following code:</p>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+
+        <code>
+// C program to find the size of pointer to pointer
+#include &lt;stdio.h&gt;
+
+int main() {
+    int a = 5;
+    int* ptr = &a;
+    int** d_ptr = &ptr;
+
+    // size of single pointer
+    printf("Size of normal Pointer: %lu\n", sizeof(ptr));
+
+    // size of double pointer
+    printf("Size of Double Pointer: %lu\n", sizeof(d_ptr));
+
+    return 0;
+}
+        </code>
+    </div>
+
+    <h2>Application of Double Pointers in C</h2>
+    <p>Double pointers have a range of applications in C programming:</p>
+    <ul>
+        <li>Used in dynamic memory allocation of multidimensional arrays.</li>
+        <li>Useful in storing multilevel data, such as paragraphs and sentences in a document.</li>
+        <li>Employed in data structures to directly manipulate node addresses without copying.</li>
+        <li>Can serve as function arguments to manipulate addresses stored in local pointers.</li>
+    </ul>
+
+    <h2>Multilevel Pointers in C</h2>
+    <p>Beyond double pointers, C also supports multilevel pointers. For instance, a triple pointer, <code>int ***t_ptr</code>, is a pointer to a double pointer.</p>
+
+    <h2>Syntax of Triple Pointer</h2>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <code>
+pointer_type ***pointer_name;
+        </code>
+    </div>
+
+    <h1>Function Pointers in C</h1>
+    <p>
+        In C, similar to normal data pointers (e.g., <code>int *</code>, <code>char *</code>), we can also have pointers to functions. This is a powerful feature in C programming.
+    </p>
+
+    <h2>Example of Function Pointer Declaration and Call</h2>
+    <p>The following example demonstrates how to declare and use a function pointer:</p>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <code>
+#include &lt;stdio.h&gt;
+// A normal function with an int parameter and void return type
+void fun(int a) { printf("Value of a is %d\n", a); }
+
+int main() {
+    // fun_ptr is a pointer to function fun()
+    void (*fun_ptr)(int) = &fun;
+
+    // Equivalent to:
+    // void (*fun_ptr)(int);
+    // fun_ptr = &fun;
+
+    // Calling fun() using fun_ptr
+    (*fun_ptr)(10);
+
+    return 0;
+}
+        </code>
+    </div>
+   
+
+    <h2>Explanation of Function Pointer Syntax</h2>
+    <p>
+        The expression <code>void (*fun_ptr)(int)</code> needs extra parentheses to ensure the correct interpretation. Without them, it would be parsed as <code>void *fun_ptr(int)</code>, which is a declaration of a function that returns a void pointer.
+    </p>
+
+    <h2>Interesting Facts about Function Pointers</h2>
+    <ol>
+        <li>Unlike normal pointers, a function pointer points to code, not data.</li>
+        <li>Function pointers do not allocate or de-allocate memory.</li>
+        <li>A function's name can be used to get its address.</li>
+    </ol>
+
+    <h2>Example Without Address and Dereference Operators</h2>
+    <p>In this example, we remove the address operator <code>&</code> and the dereference operator <code>*</code>:</p>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <code>
+#include &lt;stdio.h&gt;
+void fun(int a) { printf("Value of a is %d\n", a); }
+
+int main() {
+    void (*fun_ptr)(int) = fun; // & removed
+    fun_ptr(10); // * removed
+    return 0;
+}
+        </code>
+    </div>
+
+    <h2>Array of Function Pointers</h2>
+    <p>We can have an array of function pointers. Here’s an example:</p>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <code>
+#include &lt;stdio.h&gt;
+void add(int a, int b) { printf("Addition is %d\n", a + b); }
+void subtract(int a, int b) { printf("Subtraction is %d\n", a - b); }
+void multiply(int a, int b) { printf("Multiplication is %d\n", a * b); }
+
+int main() {
+    void (*fun_ptr_arr[])(int, int) = { add, subtract, multiply };
+    unsigned int ch, a = 15, b = 10;
+
+    printf("Enter Choice: 0 for add, 1 for subtract and 2 for multiply\n");
+    scanf("%d", &ch);
+
+    if (ch > 2) return 0;
+
+    (*fun_ptr_arr[ch])(a, b);
+
+    return 0;
+}
+        </code>
+    </div>
+ 
+
+    <h2>Function Pointers as Parameters</h2>
+    <p>Function pointers can be passed as arguments. Here’s an example:</p>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <code>
+#include &lt;stdio.h&gt;
+
+void fun1() { printf("Fun1\n"); }
+void fun2() { printf("Fun2\n"); }
+
+void wrapper(void (*fun)()) { fun(); }
+
+int main() {
+    wrapper(fun1);
+    wrapper(fun2);
+    return 0;
+}
+        </code>
+    </div>
+
+
+    <h2>Using Function Pointers with qsort</h2>
+    <p>The <code>qsort</code> function uses function pointers to compare elements. Here’s an example:</p>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <code>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int compare(const void* a, const void* b) {
+    return (*(int*)a - *(int*)b);
+}
+
+int main() {
+    int arr[] = { 10, 5, 15, 12, 90, 80 };
+    int n = sizeof(arr) / sizeof(arr[0]), i;
+
+    qsort(arr, n, sizeof(int), compare);
+
+    for (i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+
+    return 0;
+}
+        </code>
+    </div>
+   
+
+    <h2>General Purpose Search Function</h2>
+    <p>Here is a general-purpose search function that can be used with any data type using function pointers:</p>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <code>
+#include &lt;stdbool.h&gt;
+#include &lt;stdio.h&gt;
+
+bool compare(const void* a, const void* b) {
+    return (*(int*)a == *(int*)b);
+}
+
+int search(void* arr, int arr_size, int ele_size, void* x,
+           bool compare(const void*, const void*)) {
+    char* ptr = (char*)arr;
+    int i;
+    for (i = 0; i < arr_size; i++)
+        if (compare(ptr + i * ele_size, x))
+            return i;
+
+    return -1;
+}
+
+int main() {
+    int arr[] = { 2, 5, 7, 90, 70 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int x = 7;
+    printf("Returned index is %d ", search(arr, n, sizeof(int), &x, compare));
+    return 0;
+}
+        </code>
+    </div>
+   
+    <h1>NULL Pointers in C</h1>
+    <p>
+        A NULL pointer is a pointer that does not point to any memory location but has the value <code>NULL</code>. According to the C11 standard:
+    </p>
+    <blockquote>
+        “An integer constant expression with the value 0, or such an expression cast to type <code>void *</code>, is called a null pointer constant. If a null pointer constant is converted to a pointer type, the resulting pointer, called a null pointer, is guaranteed to compare unequal to a pointer to any object or function.”
+    </blockquote>
+
+    <h2>Syntax of NULL Pointer Declaration in C</h2>
+    <p>We can declare a NULL pointer as follows:</p>
+    <img src="{% static 'images/nullpointerc.png' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <code>
+type pointer_name = NULL;
+type pointer_name = 0;
+        </code>
+    </div>
+    <p>
+        NULL expands to an implementation-defined null pointer constant. It is defined in header files such as <code>stdio.h</code>, <code>stddef.h</code>, and <code>stdlib.h</code>.
+    </p>
+
+    <h2>Uses of NULL Pointer in C</h2>
+    <ul>
+        <li>To initialize a pointer variable when it hasn’t been assigned any valid memory address yet.</li>
+        <li>To check for a null pointer before accessing any pointer variable, allowing error handling in pointer-related code.</li>
+        <li>To pass a null pointer to a function argument when we don’t want to pass any valid memory address.</li>
+        <li>NULL pointers are used in data structures like trees and linked lists to indicate the end.</li>
+    </ul>
+
+    <h2>Checking if a Pointer is NULL</h2>
+    <p>To check if a pointer is NULL, we use the <code>==</code> operator:</p>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <code>ptr == NULL;</code>
+    </div>
+
+    <h2>Examples of NULL Pointers in C</h2>
+
+    <h3>Example 1: Avoiding Segmentation Fault with NULL Pointer</h3>
+    <p>This program checks if a pointer is NULL before dereferencing it:</p>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int* ptr = NULL;
+
+    if (ptr == NULL) {
+        printf("Pointer does not point to anything");
+    } else {
+        printf("Value pointed by pointer: %d", *ptr);
+    }
+    return 0;
+}
+        </code>
+    </div>
+
+    <h3>Example 2: Checking Memory Allocation with <code>malloc()</code></h3>
+    <p>The <code>malloc()</code> function returns NULL if memory allocation fails. We can check this to ensure successful allocation:</p>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <code>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main() {
+    int* ptr = (int*)malloc(5 * sizeof(int));
+
+    if (!ptr) {
+        printf("Memory Allocation Failed");
+        exit(0);
+    }
+
+    return 0;
+}
+        </code>
+    </div>
+
+    <h3>Example 3: Dereferencing a NULL Pointer</h3>
+    <p>If we try to dereference a NULL pointer, it may cause a crash depending on the machine:</p>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int* ptr = NULL;
+    printf("%d", *ptr); // Dereferencing NULL pointer
+    return 0;
+}
+        </code>
+    </div>
+
+    <h3>Example 4: Passing NULL to a Function</h3>
+    <p>We can pass a NULL pointer to a function as shown here:</p>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <code>
+#include &lt;stdio.h&gt;
+
+void foo(int* ptr) {
+    if (ptr == NULL) {
+        printf("NULL Pointer Passed");
+        return;
+    }
+    printf("Non-Null Pointer Passed");
+}
+
+int main() {
+    foo(NULL);
+    return 0;
+}
+        </code>
+    </div>
+
+    <h2>Difference Between NULL Pointer and Void Pointer in C</h2>
+    <table>
+        <tr>
+            <th>NULL Pointer</th>
+            <th>Void Pointer</th>
+        </tr>
+        <tr>
+            <td>A NULL pointer does not point to anything. It is a special reserved value for pointers.</td>
+            <td>A void pointer points to a memory location that may contain typeless data.</td>
+        </tr>
+        <tr>
+            <td>Any pointer type can be assigned NULL.</td>
+            <td>It can only be of type void.</td>
+        </tr>
+        <tr>
+            <td>All NULL pointers are equal.</td>
+            <td>Void pointers can be different.</td>
+        </tr>
+        <tr>
+            <td>NULL Pointer is a value.</td>
+            <td>A void pointer is a type.</td>
+        </tr>
+        <tr>
+            <td>Example: <code>int *ptr = NULL;</code></td>
+            <td>Example: <code>void *ptr;</code></td>
+        </tr>
+    </table>
+   
+    
+</div>
+
+<!-- JavaScript for Dropdown Functionality -->
+<script>
+    function toggleDropdown(id) {
+        var dropdown = document.getElementById(id);
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+{% endblock %}

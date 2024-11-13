@@ -1,0 +1,361 @@
+{% extends 'navbar/studentnavbar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/studenthomepage.css' %}">
+
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>C Programming Language Tutorial</h2>
+        <ul>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown1')">C Operators</button>
+                <ul class="dropdown-content" id="dropdown1" style="display: none;">
+                    <li><a class="dropdown-item" href="#">Operators in C</a></li>
+                    <li><a class="dropdown-item" href="#">Arithmetic Operators in C</a></li>
+                    <li><a class="dropdown-item" href="#">Unary Operators in C</a></li>
+                    <li><a class="dropdown-item" href="#">Relational Operators in C</a></li>
+                    <li><a class="dropdown-item" href="#">Bitwise Operators in C</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown2')">Logic Operators</button>
+                <ul class="dropdown-content" id="dropdown2" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:logicoperatorsc' %}">Logic Operators in C</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <style>
+            h1, h2 {
+                color: #333;
+            }
+            p, li {
+                margin: 10px 0;
+            }
+            table {
+                width: 80%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                background-color: #322f2f;
+            }
+            table, th, td {
+                border: 1px solid #504b4b;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #403d3d;
+            }
+            .code-container {
+                background-color: #292827ec;
+                padding: 10px;
+                border-radius: 5px;
+                color: #e0d9d5;
+                font-family: monospace;
+                margin-top: 20px;
+                white-space: pre;
+                overflow-x: auto;
+            }
+            h1 {
+                position: relative;
+                padding: 20px 0;
+            }
+            h1::after, h1::before {
+                content: "";
+                display: block;
+                width: 100%;
+                height: 2px;
+                background-color: #e7962b;
+                position: absolute;
+                left: 0;
+            }
+            h1::after {
+                bottom: 0;
+            }
+            h1::before {
+                top: 0;
+            }
+            .centered-responsive-image {
+                display: block;
+                margin: 20px auto;
+                width: 120%;
+                max-width: 700px;
+                height: 400px;
+            }
+        </style>
+
+        <!-- Content for C Operators Tutorial -->
+        <h1>Operators in C</h1>
+        <p>In C language, operators are symbols that represent operations to be performed on one or more operands.</p>
+        <img src="{% static 'images/operatorc.jpg' %}" alt="images" class="centered-responsive-image">
+        <h2>What is a C Operator?</h2>
+        <p>An operator in C is a symbol that helps perform mathematical, relational, bitwise, conditional, or logical computations on values and variables.</p>
+        <p>The values and variables used with operators are called operands.</p>
+
+        <h2>Types of Operators in C</h2>
+        <p>C language provides a wide range of operators classified into six types:</p>
+        <ul>
+            <li>Arithmetic Operators</li>
+            <li>Relational Operators</li>
+            <li>Logical Operators</li>
+            <li>Bitwise Operators</li>
+            <li>Assignment Operators</li>
+            <li>Other Operators</li>
+        </ul>
+
+        <!-- Example Section for Arithmetic Operators -->
+        <h2>1. Arithmetic Operators in C</h2>
+        <p>The arithmetic operators are used to perform arithmetic/mathematical operations on operands. Here is a list of arithmetic operators:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Operator</th>
+                    <th>Description</th>
+                    <th>Syntax</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>+</td><td>Plus</td><td>Adds two numeric values</td><td>a + b</td></tr>
+                <tr><td>-</td><td>Minus</td><td>Subtracts right operand from left</td><td>a - b</td></tr>
+                <tr><td>*</td><td>Multiply</td><td>Multiplies two numeric values</td><td>a * b</td></tr>
+                <tr><td>/</td><td>Divide</td><td>Divides two numeric values</td><td>a / b</td></tr>
+                <tr><td>%</td><td>Modulus</td><td>Returns the remainder</td><td>a % b</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Example of Arithmetic Operators in C</h3>
+        <div class="code-container">
+            <h3>Sample Code</h3>
+            <code>
+                #include &lt;stdio.h&gt;<br>
+                int main() {<br>
+                    &nbsp;&nbsp;int a = 25, b = 5;<br>
+                    &nbsp;&nbsp;printf("a + b = %d\\n", a + b);<br>
+                    &nbsp;&nbsp;printf("a - b = %d\\n", a - b);<br>
+                    &nbsp;&nbsp;printf("a * b = %d\\n", a * b);<br>
+                    &nbsp;&nbsp;printf("a / b = %d\\n", a / b);<br>
+                    &nbsp;&nbsp;printf("a %% b = %d\\n", a % b);<br>
+                    &nbsp;&nbsp;return 0;<br>
+                }
+            </code>
+        </div>
+        <div class="output-container">
+            <h3>Sample output</h3>
+            Output:<br>
+            a + b = 30<br>
+            a - b = 20<br>
+            a * b = 125<br>
+            a / b = 5<br>
+            a % b = 0
+        </div>
+
+        <h1>Unary Operators in C</h1>
+        <p>Unary operators perform operations on a single operand to produce a new value. Here are the types and examples of unary operators in C.</p>
+        <img src="{% static 'images/unaryc.jpg' %}" alt="images" class="centered-responsive-image">
+        <h2>1. Unary Minus (-)</h2>
+        <p>The minus operator changes the sign of its argument. It converts a positive number to negative and vice versa.</p>
+        <div class="code-container">
+            <h3>Sample Code</h3>
+            
+            <code>
+                #include &lt;stdio.h&gt;<br>
+                int main() {<br>
+                    &nbsp;&nbsp;int positiveInteger = 100;<br>
+                    &nbsp;&nbsp;int negativeInteger = -positiveInteger;<br>
+                    &nbsp;&nbsp;printf("Positive Integer = %d\\n", positiveInteger);<br>
+                    &nbsp;&nbsp;printf("Negative Integer = %d", negativeInteger);<br>
+                    &nbsp;&nbsp;return 0;<br>
+                }
+            </code>
+        </div>
+        <div class="output-container">
+            Output:<br>
+            Positive Integer = 100<br>
+            Negative Integer = -100
+        </div>
+
+        <h2>2. Increment (++)</h2>
+        <p>The increment operator increases the value of a variable by 1. It can be used in two ways:</p>
+        <h3>2.1 Prefix Increment (++a)</h3>
+        <p>The value is incremented before it is used.</p>
+        <h3>2.2 Postfix Increment (a++)</h3>
+        <p>The value is incremented after it is used.</p>
+        <div class="code-container">
+            <h3>Sample Code</h3>
+            <code>
+                #include &lt;stdio.h&gt;<br>
+                int main() {<br>
+                    &nbsp;&nbsp;int a = 5;<br>
+                    &nbsp;&nbsp;int b = 5;<br>
+                    &nbsp;&nbsp;printf("Pre-Incrementing a = %d\\n", ++a);<br>
+                    &nbsp;&nbsp;printf("Post-Incrementing b = %d", b++);<br>
+                    &nbsp;&nbsp;return 0;<br>
+                }
+            </code>
+        </div>
+
+        <h2>3. Decrement (--)</h2>
+        <p>The decrement operator decreases the value of a variable by 1. It can be used in two ways:</p>
+        <h3>3.1 Prefix Decrement (--a)</h3>
+        <p>The value is decremented before it is used.</p>
+        <h3>3.2 Postfix Decrement (a--)</h3>
+        <p>The value is decremented after it is used.</p>
+        <div class="code-container">
+            <h3>Sample Code</h3>
+            <code>
+                #include &lt;stdio.h&gt;<br>
+                int main() {<br>
+                    &nbsp;&nbsp;int a = 5;<br>
+                    &nbsp;&nbsp;int b = 5;<br>
+                    &nbsp;&nbsp;printf("Pre-Decrementing a = %d\\n", --a);<br>
+                    &nbsp;&nbsp;printf("Post-Decrementing b = %d", b--);<br>
+                    &nbsp;&nbsp;return 0;<br>
+                }
+            </code>
+        </div>
+        <h1 class="text-center">Bitwise Operators in C</h1>
+        <p class="lead text-center">
+            Bitwise operators allow precise manipulation of bits, giving you control over hardware operations. Learn how they work in C and explore advanced usage with practical examples.
+        </p>
+        <img src="{% static 'images/bitwisec.gif' %}" alt="images" class="centered-responsive-image">
+        <!-- Operators Description Section -->
+        <section class="mt-4">
+            <h2>Bitwise Operators in C</h2>
+            <ul>
+                <li><strong>& (bitwise AND):</strong> Returns 1 if both bits are 1.</li>
+                <li><strong>| (bitwise OR):</strong> Returns 1 if any bit is 1.</li>
+                <li><strong>^ (bitwise XOR):</strong> Returns 1 if bits are different.</li>
+                <li><strong><< (left shift):</strong> Shifts bits left by a specified number.</li>
+                <li><strong>> (right shift):</strong> Shifts bits right by a specified number.</li>
+                <li><strong>~ (bitwise NOT):</strong> Inverts all bits of a number.</li>
+            </ul>
+        </section>
+    
+        <h2>Truth Table of Bitwise Operators</h2>
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>X & Y</th>
+                    <th>X | Y</th>
+                    <th>X ^ Y</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+            </tbody>
+        </table>
+    </section>
+    <h2>Example of Bitwise Operators in C</h2>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <pre><code>
+// C Program to demonstrate use of bitwise operators
+
+#include &lt;stdio.h&gt;
+int main() {
+unsigned int a = 5, b = 9;
+
+printf("a = %u, b = %u\n", a, b);
+printf("a&b = %u\n", a & b);
+printf("a|b = %u\n", a | b);
+printf("a^b = %u\n", a ^ b);
+printf("~a = %u\n", a = ~a);
+printf("b<<1 = %u\n", b << 1);
+printf("b>>1 = %u\n", b >> 1);
+
+return 0;
+}
+        </code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>
+a = 5, b = 9
+a&b = 1
+a|b = 13
+a^b = 12
+~a = 4294967290
+b<<1 = 18
+b>>1 = 4
+        </code></pre>
+    </div>
+</section>
+<h2>Interesting Facts About Bitwise Operators</h2>
+<ul>
+    <p><strong>Shifts on Negative Numbers:</strong> Left-shift and right-shift with negative numbers are undefined.</p>
+<p><strong>Bitwise OR as Sum:</strong> The bitwise OR of two numbers gives their sum if there's no carry.</p>
+<p><strong>XOR in Problems:</strong> Used for finding odd-occurring elements, missing numbers, etc.</p>
+<p><strong>Logical vs. Bitwise:</strong> Logical operators return 0 or 1, bitwise operators return integer values.</p>
+<p><strong>Shift Operators as Multiplication/Division:</strong> Left-shift/right-shift are equivalent to multiplication/division by 2.</p>
+<p><strong>Odd/Even Check:</strong> The & operator can check if a number is odd or even.</p>
+
+</ul>
+</section>
+
+<h2>Additional Example Programs</h2>
+        
+<!-- Example 1: Find Odd Occurring Element -->
+<h4>Find Odd Occurring Element in an Array</h4>
+<div class="code-container">
+    <h3>Sample Code</h3>
+    <pre><code>
+// C program to find odd occurring elements in an array
+
+#include &lt;stdio.h&gt;
+
+int findOdd(int arr[], int n) {
+int res = 0, i;
+for (i = 0; i < n; i++)
+res ^= arr[i];
+return res;
+}
+
+int main() {
+int arr[] = { 12, 12, 14, 90, 14, 14, 14 };
+int n = sizeof(arr) / sizeof(arr[0]);
+printf("The odd occurring element is %d ", findOdd(arr, n));
+return 0;
+}
+    </code></pre>
+    <p><strong>Output:</strong> The odd occurring element is 90</p>
+</div>
+
+<!-- Example 2: Difference between & and && -->
+<h2>Difference between & and && Operators</h2>
+<div class="code-container">
+    <h3>Sample Code</h3>
+    <pre><code>
+// C program to demonstrate difference between & and &&
+
+#include &lt;stdio.h&gt;
+
+int main() {
+int x = 2, y = 5;
+(x & y) ? printf("True ") : printf("False ");
+(x && y) ? printf("True ") : printf("False ");
+return 0;
+}
+    </code></pre>
+    <p><strong>Output:</strong> False True</p>
+</div>
+</section>
+    </div>
+</div>
+
+<script>
+    function toggleDropdown(id) {
+        const dropdown = document.getElementById(id);
+        dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,508 @@
+{% extends 'navbar/studentnavbar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/studenthomepage.css' %}">
+
+<d class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>C-Language</h2>
+        <ul>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown1')">Input/Output in C</button>
+                <ul class="dropdown-content" id="dropdown1" style="display: none;">
+                    <li><a class="dropdown-item" href="#">Basic Input/Output in C</a></li>
+                    <li><a class="dropdown-item" href="#">Format specifiers in C</a></li>
+                    <li><a class="dropdown-item" href="#">printf in C</a></li>
+                    <li><a class="dropdown-item" href="#">scanf in C</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown2')">C Operators</button>
+                <ul class="dropdown-content" id="dropdown2" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:operatorsc' %}">Operators in C</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+ <!-- Main Content -->
+ <div class="content">
+    <style>
+        h1, h2 {
+            color: #333;
+        }
+        p, li {
+            margin: 10px 0;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #322f2f;
+        }
+        table, th, td {
+            border: 1px solid #504b4b;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #403d3d;
+        }
+        .code-container {
+            background-color: #292827ec;
+            padding: 10px;
+            border-radius: 5px;
+            color: #e0d9d5;
+            font-family: monospace;
+            margin-top: 20px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        h1 {
+            position: relative;
+            padding: 20px 0;
+        }
+        h1::after, h1::before {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #e7962b;
+            position: absolute;
+            left: 0;
+        }
+        h1::after {
+            bottom: 0;
+        }
+        h1::before {
+            top: 0;
+        }
+        .centered-responsive-image {
+            display: block;
+            margin: 20px auto;
+            width: 120%;
+            max-width: 700px;
+            height: 400px;
+        }
+    </style>
+   
+   <h1>Basic Input and Output in C</h1>
+   <img src="{% static 'images/inoutc.jpg' %}" alt="images" class="centered-responsive-image">
+   <h2>scanf()</h2>
+   <p>The <code>scanf()</code> method in C reads a value from the console as per the specified type and stores it in the provided address.</p>
+   <p><strong>Syntax:</strong> <code>scanf("%X", &variableOfXType);</code></p>
+
+   <h2>printf()</h2>
+   <p>The <code>printf()</code> method in C prints the specified value to the console.</p>
+   <p><strong>Syntax:</strong> <code>printf("%X", variableOfXType);</code></p>
+
+   <h2>Examples of Input and Output for Basic Types</h2>
+   
+   <div class="code-container">
+       <h3>Sample Code</h3>
+       <pre><code>
+#include &lt;stdio.h&gt;
+
+int main()
+{
+   // Declare the variables
+   int num;
+   char ch;
+   float f;
+
+   // --- Integer ---
+   printf("Enter the integer: ");
+   scanf("%d", &num);
+   printf("\nEntered integer is: %d", num);
+
+   // --- Float ---
+   while((getchar()) != '\n'); // Clearing buffer
+   printf("\n\nEnter the float: ");
+   scanf("%f", &f);
+   printf("\nEntered float is: %f", f);
+
+   // --- Character ---
+   printf("\n\nEnter the Character: ");
+   scanf("%c", &ch);
+   printf("\nEntered character is: %c", ch);
+
+   return 0;
+}
+       </code></pre>
+   </div>
+
+   <div class="code-container">
+    <h3>Output</h3>
+    <pre>
+Enter the integer: 10
+Entered integer is: 10
+
+Enter the float: 2.5
+Entered float is: 2.500000
+
+Enter the Character: A
+Entered Character is: A
+    </pre>
+</div>
+
+<h2>Examples of Input and Output for Advanced Types</h2>
+
+<div class="code-container">
+    <h3>Sample Code</h3>
+    <pre><code>
+#include &lt;stdio.h&gt;
+
+int main()
+{
+// Declare string variable
+char str[50];
+
+// Input the Word
+printf("Enter the Word: ");
+scanf("%s", str);
+printf("\nEntered Word is: %s", str);
+
+// Input the Sentence
+printf("\n\nEnter the Sentence: ");
+scanf(" %[^\n]s", str);
+printf("\nEntered Sentence is: %s", str);
+
+return 0;
+}
+    </code></pre>
+</div>
+   <div class="code-container">
+    <h3>Output</h3>
+    <pre>
+Enter the Word: APEKSHA
+Entered Word is: APEKSHA
+
+Enter the Sentence: APEKSHA LEARN
+Entered Sentence is: APEKSHA LEARN
+    </pre>
+</div>
+  <h2>Relational Operators in C</h2>
+    <p>Relational operators are used to compare two values. They return <code>1</code> (true) if the comparison is correct and <code>0</code> (false) otherwise.</p>
+    <ul>
+        <li><code>==</code>: Equal to</li>
+        <li><code>!=</code>: Not equal to</li>
+        <li><code>&gt;</code>: Greater than</li>
+        <li><code>&lt;</code>: Less than</li>
+        <li><code>&gt;=</code>: Greater than or equal to</li>
+        <li><code>&lt;=</code>: Less than or equal to</li>
+    </ul>
+
+    <h3>Example 1: Using <code>==</code> and <code>!=</code></h3>
+    <div class="code-container">
+<pre>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int a = 5, b = 10;
+
+    // Check if a is equal to b
+    if (a == b) {
+        printf("a is equal to b\\n");
+    } else {
+        printf("a is not equal to b\\n");
+    }
+
+    // Check if a is not equal to b
+    if (a != b) {
+        printf("a is not equal to b\\n");
+    }
+
+    return 0;
+}
+</pre>
+    </div>
+
+    <h3>Example 2: Using <code>&gt;</code> and <code>&lt;=</code></h3>
+    <div class="code-container">
+<pre>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int x = 15, y = 20;
+
+    if (x &gt; y) {
+        printf("x is greater than y\\n");
+    } else {
+        printf("x is not greater than y\\n");
+    }
+
+    if (y &lt;= 20) {
+        printf("y is less than or equal to 20\\n");
+    }
+
+    return 0;
+}
+</pre>
+  
+
+
+
+</div>
+
+<h1>List of Format Specifiers in C</h1>
+<p>The format specifier in C is used to tell the compiler about the type of data to be printed or scanned in input and output operations. </P> 
+    <p>They always start with a <code>%</code> symbol and are used in the formatted string in functions like <code>printf()</code>, <code>scanf()</code>, <code>sprintf()</code>, etc.</p>
+<p>The C language provides a number of format specifiers that are associated with different data types,</P>
+    <P> such as <code>%d</code> for <code>int</code>, <code>%c</code> for <code>char</code>, and more. Below is a table of some commonly used format specifiers:</p>
+
+<table>
+    <tr>
+        <th>Format Specifier</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>%c</td>
+        <td>For character type.</td>
+    </tr>
+    <tr>
+        <td>%d</td>
+        <td>For signed integer type.</td>
+    </tr>
+    <tr>
+        <td>%e or %E</td>
+        <td>For scientific notation of floats.</td>
+    </tr>
+    <tr>
+        <td>%f</td>
+        <td>For float type.</td>
+    </tr>
+    <tr>
+        <td>%g or %G</td>
+        <td>For float type with the current precision.</td>
+    </tr>
+    <tr>
+        <td>%i</td>
+        <td>Signed integer.</td>
+    </tr>
+    <tr>
+        <td>%ld or %li</td>
+        <td>For long integer.</td>
+    </tr>
+    <tr>
+        <td>%lf</td>
+        <td>For double type.</td>
+    </tr>
+    <tr>
+        <td>%Lf</td>
+        <td>For long double type.</td>
+    </tr>
+    <tr>
+        <td>%lu</td>
+        <td>For unsigned int or unsigned long.</td>
+    </tr>
+    <tr>
+        <td>%lli or %lld</td>
+        <td>For long long integer.</td>
+    </tr>
+    <tr>
+        <td>%llu</td>
+        <td>For unsigned long long integer.</td>
+    </tr>
+    <tr>
+        <td>%o</td>
+        <td>For octal representation.</td>
+    </tr>
+    <tr>
+        <td>%p</td>
+        <td>For pointer.</td>
+    </tr>
+    <tr>
+        <td>%s</td>
+        <td>For string.</td>
+    </tr>
+    <tr>
+        <td>%u</td>
+        <td>For unsigned int.</td>
+    </tr>
+    <tr>
+        <td>%x or %X</td>
+        <td>For hexadecimal representation.</td>
+    </tr>
+    <tr>
+        <td>%n</td>
+        <td>Prints nothing.</td>
+    </tr>
+    <tr>
+        <td>%%</td>
+        <td>Prints % character.</td>
+    </tr>
+</table>
+
+<h1>Understanding the printf() Function in C</h1>
+<p>The <code>printf()</code> function in C is used to print formatted output to the standard output <code>stdout</code> (usually the console screen). It is part of the C standard library <code>&lt;stdio.h&gt;</code> and allows formatting output in various ways.</p>
+<img src="{% static 'images/printfc.jpeg' %}" alt="images" class="centered-responsive-image">
+<h2>Syntax of printf</h2>
+<div class="code-container">
+    printf("formatted_string", arguments_list);
+</div>
+
+<p><strong>Parameters:</strong></p>
+<ul>
+    <li><strong>formatted_string:</strong> A string specifying the data to be printed, including format specifiers for variable values.</li>
+    <li><strong>arguments_list:</strong> Variables that correspond to the format specifiers in the formatted string.</li>
+</ul>
+<p><strong>Return Value:</strong> <code>printf()</code> returns the number of characters printed. If an error occurs, a negative value is returned.</p>
+
+<h2>Example of printf</h2>
+<p>In this example, the <code>printf()</code> function is used to print the string <em>"Hello Geek!"</em> to the output.</p>
+<div class="code-container">
+<pre><code>
+// C program to illustrate the use of printf function
+#include &lt;stdio.h&gt;
+
+int main()
+{
+// using printf to print "Hello Geek!"
+printf("Hello Geek!");
+
+return 0;
+}
+</code></pre>
+</div>
+<div class="output-container">
+    Output:<br>
+    Hello Apeksha!
+</div>
+
+<h2>Formatting with printf</h2>
+<p>The <code>printf()</code> function in C can display various data types using format specifiers that start with the percentage symbol <code>%</code>.</p>
+
+<h3>Syntax of Format Specifier</h3>
+<div class="code-container">
+    %[flags][width][.precision][length]specifier
+</div>
+
+<h3>Components of Format Specifier</h3>
+<ul>
+    <li><strong>Specifier:</strong> Denotes the type of data (e.g., <code>%d</code> for integers, <code>%f</code> for floats, <code>%c</code> for characters).</li>
+    <li><strong>Width:</strong> Specifies the minimum number of characters to print.</li>
+    <li><strong>Precision:</strong> Determines the number of digits after the decimal (for floats) or minimum number of digits (for integers).</li>
+    <li><strong>Length:</strong> Modifies the data type (e.g., <code>l</code> for long int).</li>
+</ul>
+
+<h2>Examples of Format Specifiers</h2>
+<table>
+    <tr>
+        <th>Specifier</th>
+        <th>Description</th>
+    </tr>
+    <tr><td>%d</td><td>For signed integers.</td></tr>
+    <tr><td>%f</td><td>For floating-point numbers.</td></tr>
+    <tr><td>%c</td><td>For characters.</td></tr>
+    <tr><td>%s</td><td>For strings.</td></tr>
+    <tr><td>%p</td><td>For memory addresses.</td></tr>
+    <tr><td>%x</td><td>For hexadecimal values.</td></tr>
+</table>
+
+<h3>Example: Print Variables with Specifiers</h3>
+<p>This example demonstrates printing integers along with a string using the <code>%d</code> format specifier.</p>
+<div class="code-container">
+<pre><code>
+// C program to print variables
+#include &lt;stdio.h&gt;
+
+int main()
+{
+int num1 = 99;
+int num2 = 1;
+printf("The sum of %d and %d is %d\n", num1, num2, num1 + num2);
+return 0;
+}
+</code></pre>
+</div>
+<div class="output-container">
+    Output:<br>
+    The sum of 99 and 1 is 100
+</div>
+
+<h1>Understanding the scanf() Function in C</h1>
+<p>The <code>scanf()</code> function in C stands for "Scan Formatted String" and is used to read data from standard input (<code>stdin</code>, typically the keyboard) and store it in the provided variables.</p>
+<p> It accepts character, string, and numeric data from the user using specific format specifiers.</p>
+<img src="{% static 'images/scanfc.png' %}" alt="images" class="centered-responsive-image">
+<h2>Syntax of scanf</h2>
+<div class="code-container">
+    int scanf(const char *format, ...);
+</div>
+<p><strong>Parameters:</strong></p>
+<ul>
+    <li><strong>int</strong> - Return type indicating the number of items read and assigned.</li>
+    <li><strong>format</strong> - A string containing format specifiers for each variable to store input values.</li>
+    <li><strong>...</strong> - Indicates the function accepts a variable number of arguments.</li>
+</ul>
+
+<p><strong>Return Value:</strong> <code>scanf()</code> returns the number of input values successfully assigned, <code>0</code> if no values were assigned, or a negative number if an error occurred.</p>
+
+<h2>Example Format Specifiers in scanf</h2>
+<table>
+    <tr>
+        <th>Specifier</th>
+        <th>Description</th>
+    </tr>
+    <tr><td>%d</td><td>Accepts input for integers.</td></tr>
+    <tr><td>%ld</td><td>Accepts input for long integers.</td></tr>
+    <tr><td>%lld</td><td>Accepts input for long long integers.</td></tr>
+    <tr><td>%f</td><td>Accepts input for real numbers (floats).</td></tr>
+    <tr><td>%c</td><td>Accepts input for character types.</td></tr>
+    <tr><td>%s</td><td>Accepts input for strings.</td></tr>
+</table>
+
+<h3>Example of Using scanf with a Variable</h3>
+<p>In this example, the <code>scanf</code> function stores an integer input by the user into the variable <code>var</code>.</p>
+<div class="code-container">
+<pre><code>
+int var;
+scanf("%d", &var);
+</code></pre>
+</div>
+
+<h2>Why Use &amp;?</h2>
+<p>The ampersand <code>&amp;</code> symbol is used to get the address of a variable, allowing <code>scanf</code> to store input directly in that memory location.</p>
+
+<h3>Example: Using &amp; with scanf</h3>
+<div class="code-container">
+<pre><code>
+// C program to implement scanf
+#include &lt;stdio.h&gt;
+
+int main() 
+{
+int a, b;
+
+printf("Enter first number: ");
+scanf("%d", &a);
+
+printf("Enter second number: ");
+scanf("%d", &b);
+
+printf("A : %d \t B : %d", a, b);
+
+return 0;
+}
+</code></pre>
+</div>
+
+<div class="output-container">
+    Output:<br>
+    Enter first number: 5<br>
+    Enter second number: 6<br>
+    A : 5      B : 6
+</div>
+
+</div>
+
+
+<script>
+    function toggleDropdown(id) {
+        const dropdown = document.getElementById(id);
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+
+{% endblock %}

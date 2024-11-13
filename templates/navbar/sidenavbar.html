@@ -1,0 +1,32 @@
+{% extends 'navbar/studentnavbar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/sidenavbar.css' %}">
+
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>C-Programming Language</h2>
+        <ul>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown1')">C Basics</button>
+                <ul class="dropdown-content" id="dropdown1" style="display: none;">
+                    <li><a class="dropdown-item" href="#">Introduction to C</a></li>
+                    <li><a class="dropdown-item" href="#">History of C</a></li>
+                    <li><a class="dropdown-item" href="#">Features of C</a></li>
+                </ul>
+            </li>
+            <!-- Add more topics as needed -->
+        </ul>
+    </div>
+</div>
+
+<script>
+    function toggleDropdown(id) {
+        const dropdown = document.getElementById(id);
+        dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
+
+{% endblock %}

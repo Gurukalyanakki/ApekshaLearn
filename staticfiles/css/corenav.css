@@ -1,0 +1,61 @@
+/* Reset and body styling */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #252323; /* Dark background */
+    color: #d9d9d9; /* Light gray text */
+    padding: 10px; /* Padding around the body */
+}
+
+/* Navbar styling with fire theme */
+.navbar {
+    overflow: hidden;
+    background-color: #41342c; /* Dark brown background */
+    border-radius: 10px; /* Rounded corners */
+    padding: 0.5cm; /* Padding inside the navbar */
+    box-shadow: 0 0 5px rgba(255, 165, 0, 0.1), 
+                0 0 10px rgba(255, 99, 71, 0.15), 
+                0 0 15px rgba(204, 51, 0, 0.2); /* Fire-colored glow */
+}
+
+/* Navbar container */
+.navbar .container-fluid {
+    display: flex;
+    justify-content: space-between; /* Space between left and right items */
+    align-items: center; /* Center items vertically */
+}
+
+/* Left-aligned home link */
+.navbar .navbar-brand {
+    color: white; /* Set Home link text color to white */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Navbar links styled as buttons */
+.navbar a, .navbar .nav-welcome, .navbar .nav-button {
+    font-size: 14px; /* Font size for links */
+    padding: 10px 18px; /* Padding for buttons */
+    margin-right: 8px; /* Space between items */
+    border-radius: 15px; /* Rounded corners for buttons */
+    background-color: #db6d1e; /* Medium fire-orange color */
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block; /* Display links as inline-block */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth hover effect */
+}
+
+/* Hover effect for navbar links */
+.navbar a:hover, .navbar .nav-welcome:hover, .navbar .nav-button:hover {
+    background-color: #d96e30; /* Slightly darker fire-orange on hover */
+    transform: scale(1.05); /* Slight enlargement on hover */
+}
+
+/* Specific styles for the "Welcome" text */
+.navbar .nav-welcome {
+    font-weight: bold; /* Bold text */
+    color: #ffcc33; /* Slightly lighter color for "Welcome" text */
+    margin-right: 10px; /* Space between welcome and logout */
+}

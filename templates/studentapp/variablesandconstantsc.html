@@ -1,0 +1,280 @@
+{% extends 'navbar/studentnavbar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/studenthomepage.css' %}">
+
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>C-Language</h2>
+        <ul>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown1')">C Variables and Constants</button>
+                <ul class="dropdown-content" id="dropdown1">
+                    <li><a class="dropdown-item" href="#">C Variables</a></li>
+                    <li><a class="dropdown-item" href="#">Global Variables in C</a></li>
+                    <li><a class="dropdown-item" href="#">Constants in C</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown2')">Data types in C</button>
+                <ul class="dropdown-content" id="dropdown2">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:cdatatypes' %}">C Datatypes</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <style>
+            h1, h2 {
+                color: #333;
+            }
+            p, li {
+                margin: 10px 0;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                background-color: #322f2f;
+            }
+            table, th, td {
+                border: 1px solid #504b4b;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #403d3d;
+                color: white;
+            }
+            .code-container {
+                background-color: #3f3b3b;
+                padding: 10px;
+                border-radius: 5px;
+                margin-top: 20px;
+            }
+            h1 {
+                position: relative;
+                padding-bottom: 20px;
+            }
+            h1::after {
+                content: "";
+                display: block;
+                width: 100%;
+                height: 2px;
+                background-color: #e7962b;
+                margin-top: 10px;
+                
+            }
+            h1 {
+                position: relative;
+                padding-top: 20px;
+            }
+            h1::before {
+                content: "";
+                display: block;
+                width: 100%;
+                height: 2px;
+                background-color: #e7962b;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            .centered-responsive-image {
+            display: block;
+            margin: 20px auto;
+            width: 120%;
+            max-width: 700px;
+            height: 400px;
+        }
+        </style>
+
+        <h1>Variables in C</h1>
+        <h2>What is a Variable in C?</h2>
+        <p>A variable in C is a memory location with a specific name that allows the storage and retrieval of data. Different data types can be stored, and the same variable can be used repeatedly to store new data.</p>
+        <img src="{% static 'images/variablec.webp' %}" alt="images" class="centered-responsive-image">
+        <h2>C Variable Syntax</h2>
+        <div class="code-container">
+            <pre><code>
+int variable_name;       // Single variable declaration
+data_type var1, var2;    // Multiple variable declarations
+            </code></pre>
+        </div>
+
+        <table>
+            <tr>
+                <th>Component</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><strong>data_type</strong></td>
+                <td>Specifies the type of data the variable will store.</td>
+            </tr>
+            <tr>
+                <td><strong>variable_name</strong></td>
+                <td>The name of the variable defined by the user.</td>
+            </tr>
+            <tr>
+                <td><strong>value</strong></td>
+                <td>An optional initial value assigned to the variable.</td>
+            </tr>
+        </table>
+
+        <h2>Examples of Variable Declarations</h2>
+        <div class="code-container">
+            <pre><code>
+int var;    // integer variable
+char a;     // character variable
+float fff;  // float variable
+            </code></pre>
+        </div>
+
+        <h2>Steps for Defining a Variable</h2>
+        <table>
+            <tr>
+                <th>Step</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><strong>Variable Declaration</strong></td>
+                <td>Specifies the variable’s existence and type; no memory is allocated until initialization.</td>
+            </tr>
+            <tr>
+                <td><strong>Variable Definition</strong></td>
+                <td>Allocates memory for the variable, though it initially holds a garbage value.</td>
+            </tr>
+            <tr>
+                <td><strong>Variable Initialization</strong></td>
+                <td>Assigns an initial value to the variable during declaration or later.</td>
+            </tr>
+        </table>
+
+        <h2>Example Code</h2>
+        <div class="code-container">
+            <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int var = 10;     // Variable initialization
+    printf("Value of var: %d\n", var);
+    return 0;
+}
+            </code></pre>
+        </div>
+
+        <h2>Rules for Naming Variables in C</h2>
+        <table>
+            <tr>
+                <th>Rule</th>
+                <th>Explanation</th>
+            </tr>
+            <tr>
+                <td>Use only letters, digits, and underscores</td>
+                <td>Variable names can contain alphabets, digits, and underscores.</td>
+            </tr>
+            <tr>
+                <td>Start with a letter or underscore</td>
+                <td>Names cannot begin with a digit.</td>
+            </tr>
+            <tr>
+                <td>No spaces</td>
+                <td>Variable names must not contain spaces.</td>
+            </tr>
+            <tr>
+                <td>Avoid keywords</td>
+                <td>Variable names cannot be reserved words.</td>
+            </tr>
+        </table>
+
+        <h2>Variable Types in C</h2>
+        <table>
+            <tr>
+                <th>Variable Type</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><strong>Local Variables</strong></td>
+                <td>Declared inside a function, accessible only within that function.</td>
+            </tr>
+            <tr>
+                <td><strong>Global Variables</strong></td>
+                <td>Declared outside all functions, accessible from any function in the program.</td>
+            </tr>
+            <tr>
+                <td><strong>Static Variables</strong></td>
+                <td>Retain their value between function calls.</td>
+            </tr>
+            <tr>
+                <td><strong>Automatic Variables</strong></td>
+                <td>Local variables with automatic storage duration (default).</td>
+            </tr>
+            <tr>
+                <td><strong>Extern Variables</strong></td>
+                <td>Declared with the <code>extern</code> keyword, usually defined in another file.</td>
+            </tr>
+            <tr>
+                <td><strong>Register Variables</strong></td>
+                <td>Stored in a CPU register for fast access, declared with <code>register</code> keyword.</td>
+            </tr>
+        </table>
+        <h1>Understanding Constants in C Programming</h1>
+        <p>
+            In C programming, constants are fixed values that cannot be altered during the program execution.
+            They are essential for values that should remain unchanged, like mathematical constants and limits.
+        </p>
+    
+        <h2>Types of Constants</h2>
+        <ul>
+            <li><strong>Integer Constants:</strong> Whole numbers without a decimal point.</li>
+            <li><strong>Floating-point Constants:</strong> Numbers with a decimal or in exponential notation.</li>
+            <li><strong>Character Constants:</strong> Single characters enclosed in single quotes.</li>
+            <li><strong>String Constants:</strong> Sequences of characters in double quotes.</li>
+            <li><strong>Enumeration Constants:</strong> User-defined constants in an enumeration type.</li>
+        </ul>
+        <img src="{% static 'images/constantsc.webp' %}" alt="images" class="centered-responsive-image">
+        <h2>Example Code</h2>
+        <p>Below is an example demonstrating the use of constants in C:</p>
+    
+        <div class="code-container">
+            <code>
+    #include &lt;stdio.h&gt;
+    
+    #define PI 3.14159  // Macro constant for Pi
+    
+    int main() {
+        const int MAX_USERS = 100;  // Constant variable for max users
+    
+        printf("PI: %f\\n", PI);
+        printf("Max Users: %d\\n", MAX_USERS);
+    
+        return 0;
+    }
+            </code>
+        </div>
+    
+        <h2>Expected Output</h2>
+        <div class="output">
+            PI: 3.141590<br>
+            Max Users: 100
+        </div>
+    
+        <h2>Explanation</h2>
+        <p>
+            In this code:
+        </p>
+        <ul>
+            <li><code>#define PI 3.14159</code> is a <strong>macro constant</strong>, which the preprocessor replaces wherever "PI" is found.</li>
+            <li><code>const int MAX_USERS = 100;</code> declares a <strong>constant variable</strong> that cannot be changed after initialization.</li>
+        </ul>
+        <script>
+            function toggleDropdown(id) {
+                const dropdown = document.getElementById(id);
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            }
+        </script>
+    </div>
+</div>
+{% endblock %}

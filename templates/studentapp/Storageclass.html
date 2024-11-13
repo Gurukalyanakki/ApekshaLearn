@@ -1,0 +1,250 @@
+{% extends 'navbar/studentnavbar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/studenthomepage.css' %}">
+
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>C Programming Language Tutorial</h2>
+        <ul>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown1')">Storage Classes</button>
+                <ul class="dropdown-content" id="dropdown1" style="display: none;">
+               >
+                
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown2')">FILES in C</button>
+                <ul class="dropdown-content" id="dropdown2" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:Filehandling' %}">FILE Handling</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <style>
+        h1, h2 {
+            color: #333;
+        }
+        p, li {
+            margin: 10px 0;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #322f2f;
+        }
+        table, th, td {
+            border: 1px solid #504b4b;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #403d3d;
+        }
+        .code-container {
+            background-color: #292827ec;
+            padding: 10px;
+            border-radius: 5px;
+            color: #e0d9d5;
+            font-family: monospace;
+            margin-top: 20px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        h1 {
+            position: relative;
+            padding: 20px 0;
+        }
+        h1::after, h1::before {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #e7962b;
+            position: absolute;
+            left: 0;
+        }
+        h1::after {
+            bottom: 0;
+        }
+        h1::before {
+            top: 0;
+        }
+        .centered-responsive-image {
+            display: block;
+            margin: 20px auto;
+            width: 120%;
+            max-width: 700px;
+            height: 400px;
+        }
+    </style>
+       
+    <h1>Storage Classes in C</h1>
+    <p>In C, storage classes define the scope, lifetime, visibility, and memory location of variables and functions. Storage classes in C help in deciding how a variable or function is stored, whether its value persists after the function call, and where it can be accessed.</p>
+    <img src="{% static 'images/storageclassc.png' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+    <h2>1. Automatic Storage Class (<code>auto</code>)</h2>
+    <p><strong>Keyword:</strong> <code>auto</code></p>
+    <p><strong>Scope:</strong> Local to the block (e.g., within functions)</p>
+    <p><strong>Lifetime:</strong> Duration of the block or function in which they are defined</p>
+    <p><strong>Storage:</strong> RAM</p>
+    <p><strong>Default:</strong> The <code>auto</code> keyword is implicit for all local variables.</p>
+    <h3>Explanation:</h3>
+    <p>The <code>auto</code> storage class is the default for variables declared inside a function. These variables are created when the function is called and destroyed when the function exits. This means they don’t retain their values between calls to the function.</p>
+    <h3>Example:</h3>
+    <div class="code-container">
+        <pre><code>
+#include &lt;stdio.h&gt;
+
+void display() {
+    auto int num = 10; // 'auto' is implicit; we can omit it
+    printf("%d\n", num);
+}
+
+int main() {
+    display(); // Output: 10
+    display(); // Output: 10 (new memory created each time)
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <h2>2. External Storage Class (<code>extern</code>)</h2>
+    <p><strong>Keyword:</strong> <code>extern</code></p>
+    <p><strong>Scope:</strong> Global (accessible across files and functions)</p>
+    <p><strong>Lifetime:</strong> Entire duration of the program</p>
+    <p><strong>Storage:</strong> Global memory area</p>
+    <p><strong>Default:</strong> Global variables defined outside any function have <code>extern</code> storage by default.</p>
+    <h3>Explanation:</h3>
+    <p>The <code>extern</code> storage class is used to declare global variables that can be accessed by multiple files.</p>
+    <h3>Example:</h3>
+    <div class="code-container">
+        <pre><code>
+// File1.c
+#include &lt;stdio.h&gt;
+
+extern int count;  // Declared with extern, defined in File2.c
+
+void display() {
+    printf("Count is %d\n", count);
+}
+
+// File2.c
+#include &lt;stdio.h&gt;
+
+int count = 5;  // Definition of the variable
+
+int main() {
+    display();  // Output: Count is 5
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <h2>3. Static Storage Class (<code>static</code>)</h2>
+    <p><strong>Keyword:</strong> <code>static</code></p>
+    <p><strong>Scope:</strong> Local to block/file</p>
+    <p><strong>Lifetime:</strong> Entire duration of the program</p>
+    <p><strong>Storage:</strong> Static memory area</p>
+    <h3>Explanation:</h3>
+    <p><code>static</code> variables retain their values between function calls, and <code>static</code> functions are only accessible within the file they are defined in.</p>
+    <h3>Example:</h3>
+    <div class="code-container">
+        <pre><code>
+#include &lt;stdio.h&gt;
+
+void counter() {
+    static int count = 0;  // Initialized only once
+    count++;
+    printf("Count is %d\n", count);
+}
+
+int main() {
+    counter(); // Output: Count is 1
+    counter(); // Output: Count is 2 (value retained)
+    counter(); // Output: Count is 3
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <h2>4. Register Storage Class (<code>register</code>)</h2>
+    <p><strong>Keyword:</strong> <code>register</code></p>
+    <p><strong>Scope:</strong> Local to the block</p>
+    <p><strong>Lifetime:</strong> Duration of the block</p>
+    <p><strong>Storage:</strong> CPU Register (if available)</p>
+    <h3>Explanation:</h3>
+    <p>The <code>register</code> storage class suggests that the variable should be stored in a CPU register instead of RAM for faster access.</p>
+    <h3>Example:</h3>
+    <div class="code-container">
+        <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    register int counter = 0;  // Hint to store in CPU register
+    for (int i = 0; i &lt; 5; i++) {
+        counter += i;
+    }
+    printf("Counter: %d\n", counter);
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <h2>Summary Table</h2>
+    <table class="summary-table">
+        <tr>
+            <th>Storage Class</th>
+            <th>Keyword</th>
+            <th>Scope</th>
+            <th>Lifetime</th>
+            <th>Storage Location</th>
+        </tr>
+        <tr>
+            <td>Automatic</td>
+            <td><code>auto</code></td>
+            <td>Local to block</td>
+            <td>Duration of block</td>
+            <td>RAM</td>
+        </tr>
+        <tr>
+            <td>External</td>
+            <td><code>extern</code></td>
+            <td>Global</td>
+            <td>Program duration</td>
+            <td>Global memory</td>
+        </tr>
+        <tr>
+            <td>Static</td>
+            <td><code>static</code></td>
+            <td>Local/File</td>
+            <td>Program duration</td>
+            <td>Static memory</td>
+        </tr>
+        <tr>
+            <td>Register</td>
+            <td><code>register</code></td>
+            <td>Local to block</td>
+            <td>Duration of block</td>
+            <td>CPU Register (if available)</td>
+        </tr>
+    </table>
+      
+    </div>
+    
+</div>
+
+<!-- JavaScript for Dropdown Functionality -->
+<script>
+    function toggleDropdown(id) {
+        var dropdown = document.getElementById(id);
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+{% endblock %}

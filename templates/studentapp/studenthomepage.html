@@ -1,0 +1,308 @@
+{% extends 'navbar/studentnavbar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/studenthomepage.css' %}">
+
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>C Programming Language </h2>
+        <ul>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown1')">C Basics</button>
+                <ul class="dropdown-content" id="dropdown1">
+                    <li><a class="dropdown-item" href="#">Introduction to C</a></li>
+                    <li><a class="dropdown-item" href="#">History of C</a></li>
+                    <li><a class="dropdown-item" href="#">Features of C</a></li>
+                    <li><a class="dropdown-item" href="#">Keywords in C</a></li>
+                    <li><a class="dropdown-item" href="#">Comments in C</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown2')">C Variables and Constants</button>
+                <ul class="dropdown-content" id="dropdown2">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:variablesandconstantsc' %}">C Variables</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown3')">Data types in C</button>
+                <ul class="dropdown-content" id="dropdown3">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:cdatatypes' %}">C Datatypes</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown4')">Input/Output in C</button>
+                <ul class="dropdown-content" id="dropdown4" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:inputoutputc' %}">Basic input and output in C</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown5')">C Operators</button>
+                <ul class="dropdown-content" id="dropdown5" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:operatorsc' %}">Operators in C</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown6')">Logic Operators</button>
+                <ul class="dropdown-content" id="dropdown6" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:logicoperatorsc' %}">Logic Operators in C</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown7')">Control Statements</button>
+                <ul class="dropdown-content" id="dropdown7" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:conditionalstc' %}">Control Statements in C</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown8')">Looping statements</button>
+                <ul class="dropdown-content" id="dropdown8" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:loopstc' %}">Loops in C</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown9')">C-Functions</button>
+                <ul class="dropdown-content" id="dropdown9" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:functions' %}">User-Defined Functions</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown10')">Arrays</button>
+                <ul class="dropdown-content" id="dropdown10" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:carrays' %}">Arrays in C</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown11')">Strings in C</button>
+                <ul class="dropdown-content" id="dropdown11" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:cstrings' %}">Strings</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown12')">Pointers in C</button>
+                <ul class="dropdown-content" id="dropdown12" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:cpointers' %}">Application of Pointers in C</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown13')">User-Defined Datatypes in C</button>
+                <ul class="dropdown-content" id="dropdown13" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:userdefineddatatypes' %}">Structures</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown14')">Storage Class</button>
+                <ul class="dropdown-content" id="dropdown14" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:Storageclass' %}">Storage Classes in C</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown15')">FILES in C</button>
+                <ul class="dropdown-content" id="dropdown15" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:Filehandling' %}">File Handling</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <style>
+            h1, h2 {
+                color: #333;
+            }
+            p, li {
+                margin: 10px 0;
+            }
+            table {
+                width: 80%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                background-color: #322f2f;
+            }
+            table, th, td {
+                border: 1px solid #504b4b;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #403d3d;
+            }
+            .code-container {
+                background-color: #292827ec;
+                padding: 10px;
+                border-radius: 5px;
+                color: #e0d9d5;
+                font-family: monospace;
+                margin-top: 20px;
+                white-space: pre;
+                overflow-x: auto;
+            }
+            h1 {
+                position: relative;
+                padding: 20px 0;
+            }
+            h1::after, h1::before {
+                content: "";
+                display: block;
+                width: 100%;
+                height: 2px;
+                background-color: #e7962b;
+                position: absolute;
+                left: 0;
+            }
+            h1::after {
+                bottom: 0;
+            }
+            h1::before {
+                top: 0;
+            }
+            .centered-responsive-image {
+                display: block;
+                margin: 20px auto;
+                width: 150%;
+                max-width: 700px;
+                height: 400px;
+            }
+           
+        </style>
+         <h1>C Programming Language Tutorial</h1>
+
+         <h2>What is C?</h2>
+         <p>C is a general-purpose, procedural, high-level programming language used in the development of software, system programming, games, and more.</p>
+         <ul>
+             <li>C was developed by Dennis M. Ritchie at Bell Telephone Laboratories in 1972.</li>
+             <li>It is powerful, flexible, and initially created for programming UNIX.</li>
+             <li>Today, C is one of the most widely used languages worldwide.</li>
+         </ul>
+         <p>C is known for its simplicity and efficiency, making it a great choice to start learning programming.</p>
+ 
+         <!-- Code Container Example -->
+         <div class="code-container">
+             <h3>Sample Code</h3>
+             <pre><code>
+ #include &lt;stdio.h&gt;
+ 
+ int main() {
+     printf("Hello, World!");
+     return 0;
+ }
+             </code></pre>
+         </div>
+ 
+         <h2>Key Features of C Language</h2>
+         <ul>
+             <li><span class="feature-title">Procedural Language:</span> Follows a structured approach with functions and procedures.</li>
+             <li><span class="feature-title">Fast and Efficient:</span> Great memory management and quick execution.</li>
+             <li><span class="feature-title">Modularity:</span> Organizes code into functions or modules.</li>
+             <li><span class="feature-title">Statically Typed:</span> Variables require explicit data type definitions.</li>
+             <li><span class="feature-title">General-Purpose:</span> Suitable for diverse applications, from system to application development.</li>
+             <li><span class="feature-title">Rich Set of Operators:</span> Supports a comprehensive set of operations.</li>
+             <li><span class="feature-title">Libraries with Rich Functions:</span> Offers a broad library of functions.</li>
+             <li><span class="feature-title">Middle-Level Language:</span> Bridges high- and low-level programming.</li>
+             <li><span class="feature-title">Portability:</span> C programs can run on different platforms with minor adjustments.</li>
+             <li><span class="feature-title">Easy to Extend:</span> Allows new features or functions to be added easily.</li>
+         </ul>
+ 
+         <h2>Keywords in C</h2>
+         <p>Keywords are reserved words in C with special meanings, forming part of the language syntax and not usable as identifiers:</p>
+ 
+         <table>
+             <thead>
+                 <tr>
+                     <th>Keywords</th>
+                 </tr>
+             </thead>
+             <tbody>
+                 <tr>
+                     <td>auto</td><td>break</td><td>case</td><td>char</td>
+                 </tr>
+                 <tr>
+                     <td>const</td><td>continue</td><td>default</td><td>do</td>
+                 </tr>
+                 <tr>
+                     <td>double</td><td>else</td><td>enum</td><td>extern</td>
+                 </tr>
+                 <tr>
+                     <td>float</td><td>for</td><td>goto</td><td>if</td>
+                 </tr>
+                 <tr>
+                     <td>int</td><td>long</td><td>register</td><td>return</td>
+                 </tr>
+                 <tr>
+                     <td>short</td><td>signed</td><td>sizeof</td><td>static</td>
+                 </tr>
+                 <tr>
+                     <td>struct</td><td>switch</td><td>typedef</td><td>union</td>
+                 </tr>
+                 <tr>
+                     <td>unsigned</td><td>void</td><td>volatile</td><td>while</td>
+                 </tr>
+             </tbody>
+         </table>
+ 
+         <h1>Comments in C Programming</h1>
+         <p>Comments in C are notes in the source code, helping to make the code understandable without execution by the compiler or interpreter.</p>
+ 
+         <h2>When and Why to Use Comments?</h2>
+         <ul>
+             <li>Helpful for large codebases.</li>
+             <li>Describes algorithms for clarity.</li>
+             <li>Allows deactivation of code temporarily.</li>
+         </ul>
+ 
+         <h2>Types of Comments in C</h2>
+         <ul>
+             <li><strong>Single-line comment</strong></li>
+             <li><strong>Multi-line comment</strong></li>
+         </ul>
+
+ 
+         <h3>1. Single-line Comment</h3>
+         <p>A single-line comment starts with <code>//</code> and extends to the end of the line.</p>
+         <p><strong>Syntax:</strong></p>
+         <div class="code-container">
+             <pre><code>// This is a single-line comment</code></pre>
+         </div>
+         
+         <p><strong>Example:</strong> Single-line comment in a C program</p>
+         <div class="code-container">
+             <pre><code>
+ // C program to illustrate single-line comment
+ #include &lt;stdio.h&gt;
+ 
+ int main(void) {
+     // This is a single-line comment
+     printf("Welcome to GeeksforGeeks");
+     return 0;
+ }
+             </code></pre>
+         </div>
+         <img src="{% static 'images/commentinc.jpg' %}" alt="images" class="centered-responsive-image">
+         <h3>2. Multi-line Comment</h3>
+         <p>A multi-line comment begins with <code>/*</code> and ends with <code>*/</code>.</p>
+         <p><strong>Syntax:</strong></p>
+         <div class="code-container">
+             <pre><code>/*
+ Multi-line comment starts here
+ continues here
+ ends here
+ */</code></pre>
+         </div>
+     </div>
+ </div>
+
+<!-- Toggle Dropdown Script -->
+<script>
+function toggleDropdown(id) {
+    var dropdown = document.getElementById(id);
+    if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+        dropdown.style.display = 'block';
+    } else {
+        dropdown.style.display = 'none';
+    }
+}
+</script>
+
+{% endblock content %}

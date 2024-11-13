@@ -1,0 +1,259 @@
+{% extends 'navbar/studentnavbar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/studenthomepage.css' %}">
+
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>C Programming Language Tutorial</h2>
+        <ul>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown1')">Looping statements in C </button>
+                <ul class="dropdown-content" id="dropdown1">
+                    <li><a class="dropdown-item" href="#">For Loop</a></li>
+                    <li><a class="dropdown-item" href="#">While Loop </a></li>
+                    <li><a class="dropdown-item" href="#">Do While Loop</a></li>
+                    <li><a class="dropdown-item" href="#">Continue</a></li>
+                    <li><a class="dropdown-item" href="#">Break</a></li>
+                    <li><a class="dropdown-item" href="#">Go-to</a></li>
+               
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown2')">C-Functions</button>
+                <ul class="dropdown-content" id="dropdown2" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:functions' %}">User-Defined-Functions</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <style>
+            h1, h2 {
+                color: #333;
+            }
+            p, li {
+                margin: 10px 0;
+            }
+            table {
+                width: 80%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                background-color: #322f2f;
+            }
+            table, th, td {
+                border: 1px solid #504b4b;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #403d3d;
+            }
+            .code-container {
+                background-color: #292827ec;
+                padding: 10px;
+                border-radius: 5px;
+                color: #e0d9d5;
+                font-family: monospace;
+                margin-top: 20px;
+                white-space: pre;
+                overflow-x: auto;
+            }
+            h1 {
+                position: relative;
+                padding: 20px 0;
+            }
+            h1::after, h1::before {
+                content: "";
+                display: block;
+                width: 100%;
+                height: 2px;
+                background-color: #e7962b;
+                position: absolute;
+                left: 0;
+            }
+            h1::after {
+                bottom: 0;
+            }
+            h1::before {
+                top: 0;
+            }
+            .centered-responsive-image {
+                display: block;
+                margin: 20px auto;
+                width: 120%;
+                max-width: 700px;
+                height: 400px;
+            }
+        </style>
+        
+    <h1>Loops in C Programming</h1>
+
+    <p>Loops in programming are used to repeat a block of code until the specified condition is met. A loop statement allows programmers to execute a statement or group of statements multiple times without repetition of code.</p>
+
+    <h2>C Program to Illustrate the Need for Loops</h2>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <pre>
+#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Hello World\n");
+    printf("Hello World\n");
+    printf("Hello World\n");
+    printf("Hello World\n");
+    printf("Hello World\n");
+    printf("Hello World\n");
+    printf("Hello World\n");
+    printf("Hello World\n");
+    printf("Hello World\n");
+    printf("Hello World\n");
+
+    return 0;
+}
+        </pre>
+    </div>
+    <p><strong>Output:</strong></p>
+    <p>Hello World (10 times)</p>
+
+    <h2>Types of Loops in C Programming</h2>
+    <p>There are mainly two types of loops in C Programming:</p>
+    <ul>
+        <li><strong>Entry Controlled Loops:</strong> In Entry controlled loops, the test condition is checked before entering the main body of the loop. For Loop and While Loop are entry-controlled loops.</li>
+        <li><strong>Exit Controlled Loops:</strong> In Exit controlled loops, the test condition is evaluated at the end of the loop body, ensuring the loop body executes at least once. The do-while loop is an exit-controlled loop.</li>
+    </ul>
+
+    <h2>Loop Types</h2>
+    <ul>
+        <li><strong>for loop:</strong> First initializes, then checks the condition, then executes the body, and finally performs the update.</li>
+        <li><strong>while loop:</strong> First initializes, checks the condition, then executes the body. Updating can be inside the loop body.</li>
+        <li><strong>do-while loop:</strong> Executes the body first, then checks the condition.</li>
+    </ul>
+
+    <h2>for Loop</h2>
+    <p>The <code>for</code> loop in C programming is a repetition control structure that allows programmers to execute a block of code a specific number of times.</p>
+    <div class="code-container">
+        <pre>
+for (initialize expression; test expression; update expression) {
+    // body of for loop
+}
+        </pre>
+    </div>
+    <h4>Diagram:</h4>
+     
+    <img src="{% static 'images/forloop.png' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+
+    <p>Example:</p>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <pre>
+#include &lt;stdio.h&gt;
+
+int main() {
+    for (int i = 0; i < 10; ++i) {
+        printf("Hello World\n");
+    }
+    return 0;
+}
+        </pre>
+    </div>
+
+    <h2>while Loop</h2>
+    <p>The <code>while</code> loop executes based on a condition and may run indefinitely if the condition remains true.</p>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <pre>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int i = 2;
+    while (i < 10) {
+        printf("Hello World\n");
+        i++;
+    }
+    return 0;
+}
+        </pre>
+    </div>
+    <h4>Diagram:</h4>
+     
+    <img src="{% static 'images/whileloop.png' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+
+    <h2>do-while Loop</h2>
+    <p>The <code>do-while</code> loop will execute the loop body at least once, regardless of whether the condition is initially true or false.</p>
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <pre>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int i = 2;
+    do {
+        printf("Hello World\n");
+        i++;
+    } while (i < 1);
+    return 0;
+}
+        </pre>
+    </div>
+
+    <h4>Diagram:</h4>
+     
+    <img src="{% static 'images/dowhileloop.jpg' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+
+    <h2>Loop Control Statements</h2>
+    <p>Loop control statements in C are used to modify the normal sequence of loop execution.</p>
+    <ul>
+        <li><strong>break statement:</strong> Terminates the loop or switch statement, transferring execution to the statement immediately following it.</li>
+        <h4>Diagram:</h4>
+     
+        <img src="{% static 'images/breakinc.png' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+    
+        <li><strong>continue statement:</strong> Skips the remaining loop body and resets the condition for the next iteration.</li>
+        <h4>Diagram:</h4>
+     
+        <img src="{% static 'images/continueinc.png' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+    
+        <li><strong>goto statement:</strong> Transfers control to a labeled statement.</li>
+        <h4>Diagram:</h4>
+     
+        <img src="{% static 'images/gotoinc.jpg' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+    
+    </ul>
+
+    <h2>Infinite Loops</h2>
+    <p>An infinite loop runs indefinitely as the test condition is never met. Here’s how infinite loops are created with different loops:</p>
+
+    <div class="code-container">
+        <h3>Sample Code</h3>
+        <pre>
+// Infinite for loop
+#include &lt;stdio.h&gt;
+
+int main() {
+    for ( ; ; ) {
+        printf("This loop will run forever.\n");
+    }
+    return 0;
+}
+        </pre>
+    </div>
+
+
+    </div>
+
+   
+</div>
+
+<!-- JavaScript for Dropdown Functionality -->
+<script>
+    function toggleDropdown(id) {
+        var dropdown = document.getElementById(id);
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+{% endblock %}

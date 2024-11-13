@@ -1,0 +1,75 @@
+{% extends 'navbar/projectnavbar.html' %}
+
+{% load static %}
+
+{% block content %}
+<!-- Main content section -->
+<!-- Main content section -->
+<div class="row">
+    <div class="leftcolumn" style="width: 65%; padding-right: 20px;">
+        <!-- APEKSHA card -->
+        <div class="card" style="padding: 20px; margin-bottom: 30px;">
+            <h2 style="color: #d68016; font-size: 1.8em; font-weight: bold;">APEKSHA</h2>
+ 
+            <div class="fakeimg" style="height: 350px;">
+                <img src="{% static 'images/apekshaf.jpg' %}" alt="Image Description" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <h1 style="color: #f8b25b; font-size: 1.8em; font-weight: bold;">Founder's vision</h1>
+            <p style="font-size: 1.1em;">
+             
+                "APEKSHA" is a vibrant coding Startup dedicated to empowering individuals through technology and programming. With the tagline "LET'S MAKE HOPE," it encourages learning and growth in coding and tech skills, providing a supportive community for beginners and advanced coders alike. Through hands-on sessions, and collaborative projects, APEKSHA  fosters a space where members can turn ideas into reality and build hope for a brighter tech future.</p>
+        </div>
+
+        <!-- VYUHA COMMUNITY card -->
+        <div class="card" style="padding: 20px;">
+            <h2 style="color: #d68016; font-size: 1.8em; font-weight: bold;">VYUHA COMMUNITY</h2>
+             
+            <div class="fakeimg" style="height: 350px;">
+                <img src="{% static 'images/vyuha.jpg' %}" alt="Image Description" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <h1 style="color: #f8b25b; font-size: 1.8em; font-weight: bold;">Founder's vision</h1>
+            <p style="font-size: 1.1em;">
+                Empowering Students for Self-Awareness, Fearlessness, Joyful Learning, and Purposeful Research Our vision is to create an educational environment that empowers students to become self-aware, free from fear of questioning, and purpose-driven individuals engaged in research fields, by making youth enjoy learning process. We are committed to providing a transformative educational experience that cultivates holistic development and prepares students for success in an ever changing world.</p>
+        </div>
+    </div>
+</div>
+
+    <!-- Right column for additional content (increased size) -->
+    <div class="rightcolumn" style="width: 35%; padding-left: 20px;">
+        <div class="card">
+            <h2 style="color: #d68016;">Contact Us</h2>
+            <a href="{% url 'adminapp:contactus' %}">
+                <div class="fakeimg" style="height: 250px; width:460px;">
+                    <img src="{% static 'images/contactus.jpg' %}" alt="Image Description" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </a>
+           
+        </div>
+        
+        <div class="card">
+            <h2 style="color: #de8a36;">Learn Languages</h2>
+            <a href="{% url 'adminapp:UserLoginLogic' %}">
+                <div class="fakeimg" style="height: 280px;">
+                    <img src="{% static 'images/coslide1.jpg' %}" alt="Image Description" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </a>
+
+            <a href="{% url 'adminapp:UserLoginLogic' %}">
+                <div class="fakeimg" style="height: 280px;">
+                    <img src="{% static 'images/coslide2.webp' %}" alt="Image Description" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </a>
+
+            <a href="{% url 'adminapp:UserLoginLogic' %}">
+                <div class="fakeimg" style="height: 290px;">
+                    <img src="{% static 'images/html.jpeg' %}" alt="Image Description" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Footer for copyright -->
+
+
+{% endblock %}

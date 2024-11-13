@@ -1,0 +1,544 @@
+{% extends 'navbar/studentnavbar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/studenthomepage.css' %}">
+
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>C Programming Language Tutorial</h2>
+        <ul>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown1')">C Conditional statements</button>
+                <ul class="dropdown-content" id="dropdown1">
+                    <li><a class="dropdown-item" href="#">If Statement </a></li>
+                    <li><a class="dropdown-item" href="#">If else Statement </a></li>
+                    <li><a class="dropdown-item" href="#">If else if ladder</a></li>
+                    <li><a class="dropdown-item" href="#">Switch Statement </a></li>
+                 
+                  
+                </ul>
+            </li>
+            <li>
+                <button class="dropdown-btn" onclick="toggleDropdown('dropdown2')">Looping statements </button>
+                <ul class="dropdown-content" id="dropdown2" style="display: none;">
+                    <li><a class="dropdown-item" href="{% url 'studentapp:loopstc' %}">Loops in C</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <style>
+        h1, h2 {
+            color: #333;
+        }
+        p, li {
+            margin: 10px 0;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #322f2f;
+        }
+        table, th, td {
+            border: 1px solid #504b4b;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #403d3d;
+        }
+        .code-container {
+            background-color: #292827ec;
+            padding: 10px;
+            border-radius: 5px;
+            color: #e0d9d5;
+            font-family: monospace;
+            margin-top: 20px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        h1 {
+            position: relative;
+            padding: 20px 0;
+        }
+        h1::after, h1::before {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #e7962b;
+            position: absolute;
+            left: 0;
+        }
+        h1::after {
+            bottom: 0;
+        }
+        h1::before {
+            top: 0;
+        }
+        .centered-responsive-image {
+            display: block;
+            margin: 20px auto;
+            width: 120%;
+            max-width: 500px;
+            height: 500px;
+        }
+    </style>
+       
+       
+      
+       <h1>Conditional Statements in C</h1>
+       <p>Conditional statements allow decision-making based on specific conditions, controlling the program’s flow.</p>
+       <p> They are essential for creating flexible and responsive code in C programming.</p>
+      
+       <h3>1. If Statement</h3>
+       <p>The <code>if</code> statement tests a condition and executes a block of code only if that condition is true.</p>
+  
+       <h4>Syntax:</h4>
+       <div class="code-container">
+           <pre><code>if (condition) {
+   // Code to execute if condition is true
+}</code></pre>
+       </div>
+  
+       <h4>Example:</h4>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre><code>#include &lt;stdio.h&gt;
+int main() {
+   int num = 10;
+   if (num > 5) {
+       printf("The number is greater than 5\n");
+   }
+   printf("This line executes regardless of the condition.\n");
+   return 0;
+}</code></pre>
+       </div>
+  
+       <h4>Output:</h4>
+       <div class="code-container">
+           <pre><code>The number is greater than 5
+This line executes regardless of the condition.</code></pre>
+       </div>
+  
+       <h3>2. If-Else Statement</h3>
+       <p>The <code>if-else</code> statement adds an alternative block of code if the condition is false,</p
+        ><p> allowing the program to execute one block for true conditions and another for false ones.</p>
+  
+       <h4>Syntax:</h4>
+       <div class="code-container">
+           <pre><code>if (condition) {
+   // Code for true condition
+} else {
+   // Code for false condition
+}</code></pre>
+       </div>
+  
+       <h4>Example:</h4>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre><code>#include &lt;stdio.h&gt;
+int main() {
+   int num = 3;
+   if (num > 5) {
+       printf("Number is greater than 5\n");
+   } else {
+       printf("Number is not greater than 5\n");
+   }
+   return 0;
+}</code></pre>
+       </div>
+  
+       <h4>Output:</h4>
+       <div class="code-container">
+           <pre><code>Number is not greater than 5</code></pre>
+       </div>
+      
+       <h4>Flowchart:</h4>
+     
+        <img src="{% static 'images/Simpleif.webp' %}" alt="If-Else Statement Flowchart" class="centered-responsive-image">
+
+       <h3>3. Nested If-Else</h3>
+       <p>A <code>nested if-else</code> is an if statement within another if or else statement, allowing for more complex decision-making scenarios.</p>
+   
+       <h4>Syntax:</h4>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre><code>if (condition1) {
+   if (condition2) {
+       // Code for condition1 and condition2 being true
+   } else {
+       // Code for condition1 true, condition2 false
+   }
+} else {
+   // Code if condition1 is false
+}</code></pre>
+       </div>
+  
+       <h4>Example:</h4>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre><code>#include &lt;stdio.h&gt;
+int main() {
+   int num = 10;
+   if (num > 5) {
+       if (num < 15) {
+           printf("Number is between 5 and 15\n");
+       } else {
+           printf("Number is greater than or equal to 15\n");
+       }
+   } else {
+       printf("Number is less than or equal to 5\n");
+   }
+   return 0;
+}</code></pre>
+       </div>
+  
+       <h4>Output:</h4>
+       <div class="code-container">
+           <pre><code>Number is between 5 and 15</code></pre>
+       </div>
+      
+       <h4>Flowchart:</h4>
+     
+       <img src="{% static 'images/Nestedifelse.webp' %}" alt="Nested If-Else Flowchart" class="centered-responsive-image">
+
+       <h1>If-Else If Ladder in C</h1>
+       <p>The <strong>if-else if ladder</strong> in C programming is used to test a series of conditions sequentially. Each condition is checked only if all preceding conditions are false. </p>
+       <p>If any conditional expression evaluates to true, the corresponding code block is executed, and the entire ladder is terminated.</p>
+
+       <h4>Syntax:</h4>
+       <div class="code-container">
+           <pre><code>// any if-else ladder starts with an if statement only
+if(condition) {
+   // code block
+}
+else if(condition) { 
+   // this else if will be executed when the previous if condition is false
+}
+... // multiple else if statements can follow
+else { 
+   // final else block
+}</code></pre>
+       </div>
+
+       <h4>Working Flow:</h4>
+       <ol>
+           <li>The flow starts with the first <code>if</code> statement.</li>
+           <li>The first condition is tested.</li>
+           <li>If true, the corresponding block executes. If false, the flow moves to the next condition.</li>
+           <li>This process continues until a true condition is found or all conditions are evaluated.</li>
+           <li>If none are true, the <code>else</code> block (if present) executes.</li>
+           <li>Exits the if-else-if ladder.</li>
+       </ol>
+
+       <h4>Note:</h4>
+       <p>An if-else ladder can exclude the else block.</p>
+
+       <h3>Example 1: Check whether a number is positive, negative, or 0</h3>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+   int n = 0;
+
+   // Check if the number is positive, negative, or zero
+   if (n > 0) {
+       printf("Positive");
+   }
+   else if (n < 0) {
+       printf("Negative");
+   }
+   else {
+       printf("Zero");
+   }
+   return 0;
+}</code></pre>
+       </div>
+
+       <h4>Output:</h4>
+       <div class="code-container">
+           <pre><code>Zero</code></pre>
+       </div>
+
+       <h3>Example 2: Calculate Grade According to Marks</h3>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+   int marks = 91;
+   
+   // Determine grade based on marks
+   if (marks <= 100 && marks >= 90)
+       printf("A+ Grade");
+   else if (marks < 90 && marks >= 80)
+       printf("A Grade");
+   else if (marks < 80 && marks >= 70)
+       printf("B Grade");
+   else if (marks < 70 && marks >= 60)
+       printf("C Grade");
+   else if (marks < 60 && marks >= 50)
+       printf("D Grade");
+   else
+       printf("F Failed");
+
+   return 0;
+}</code></pre>
+       </div>
+
+       <h4>Output:</h4>
+       <div class="code-container">
+           <pre><code>A+ Grade</code></pre>
+       </div>
+
+       <h4>Flowchart:</h4>
+      
+       <img src="{% static 'images/elseifladder.webp' %}" alt="If-Else If Ladder Flowchart" class="centered-responsive-image">
+  
+       <h1>Switch Case Statement in C</h1>
+       <p>The <strong>switch case statement</strong> evaluates a given expression and executes statements based on its value. </p>
+       <p> is used to perform different actions based on different conditions (cases) and serves as a substitute for lengthy <code>if</code> statements that compare a variable to multiple integral values.</p>
+       
+       <h4>Syntax of Switch Statement in C:</h4>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre><code>switch(expression)
+{
+   case value1: statement_1;
+                break;
+   case value2: statement_2;
+                break;
+   ...
+   case value_n: statement_n;
+                 break;
+   default: default_statement;
+}</code></pre>
+       </div>
+
+       <h4>Rules of the Switch Case Statement:</h4>
+       <ul>
+           <li>The "case value" must be of <code>char</code> or <code>int</code> type.</li>
+           <li>There can be one or multiple cases.</li>
+           <li>Case values must be unique.</li>
+           <li>A <code>break</code> statement is optional but can be used to exit the switch statement.</li>
+           <li>The <code>default</code> statement is optional.</li>
+       </ul>
+
+       <h3>Example: C Program to Demonstrate Switch Case</h3>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+   int var = 1;
+
+   switch (var) {
+       case 1:
+           printf("Case 1 is Matched.");
+           break;
+
+       case 2:
+           printf("Case 2 is Matched.");
+           break;
+
+       case 3:
+           printf("Case 3 is Matched.");
+           break;
+
+       default:
+           printf("Default case is Matched.");
+           break;
+   }
+
+   return 0;
+}</code></pre>
+       </div>
+
+       <h4>Output:</h4>
+       <div class="code-container">
+           <pre><code>Case 1 is Matched.</code></pre>
+       </div>
+
+       <h3>How the Switch Statement Works:</h3>
+       <ol>
+           <li>The switch variable is evaluated.</li>
+           <li>The evaluated value is matched against all present cases.</li>
+           <li>If a matching case value is found, the associated code is executed.</li>
+           <li>If no match is found, the default case (if present) is executed.</li>
+           <li>If a <code>break</code> keyword is present, control exits the switch statement. If omitted, execution continues to the next case.</li>
+           <li>Statements after the switch statement are executed.</li>
+       </ol>
+
+       <h4>Flowchart of Switch Statement:</h4>
+        
+       <img src="{% static 'images/SwitchCase.webp' %}" alt="Flowchart of Switch Statement" class="centered-responsive-image">
+
+       <h3>Example of Switch Case Without Break:</h3>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+   int var = 2;
+
+   switch (var) {
+       case 1:
+           printf("Case 1 is executed.\n");
+       case 2:
+           printf("Case 2 is executed.\n");
+       case 3:
+           printf("Case 3 is executed.");
+       case 4:
+           printf("Case 4 is executed.");
+   }
+   return 0;
+}</code></pre>
+       </div>
+
+       <h4>Output:</h4>
+       <div class="code-container">
+           <pre><code>Case 2 is executed.
+Case 3 is executed.
+Case 4 is executed.</code></pre>
+       </div>
+
+       <h3>Default in Switch Case:</h3>
+       <p>The <code>default</code> keyword specifies the set of statements to execute if there is no case match. It is optional and can be placed anywhere in the switch block.</p>
+
+       <h3>Important Points About Switch Case Statements:</h3>
+       <ol>
+           <li>The switch expression must result in a constant value.</li>
+           <li>The expression value must be of <code>int</code> or <code>char</code> type.</li>
+           <li>Case values must be unique.</li>
+           <li>Nesting of switch statements is allowed but should be avoided for readability.</li>
+           <li>The default block can be placed anywhere.</li>
+       </ol>
+
+       <h3>Example 1: Print the Day of the Week</h3>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre><code>#include &lt;stdio.h&gt;
+
+// Driver Code
+int main() {
+   int day = 2;
+
+   printf("The day with number %d is ", day);
+   switch (day) {
+       case 1:
+           printf("Monday");
+           break;
+       case 2:
+           printf("Tuesday");
+           break;
+       case 3:
+           printf("Wednesday");
+           break;
+       case 4:
+           printf("Thursday");
+           break;
+       case 5:
+           printf("Friday");
+           break;
+       case 6:
+           printf("Saturday");
+           break;
+       case 7:
+           printf("Sunday");
+           break;
+       default:
+           printf("Invalid Input");
+           break;
+   }
+   return 0;
+}</code></pre>
+       </div>
+
+       <h4>Output:</h4>
+       <div class="code-container">
+           <pre><code>The day with number 2 is Tuesday</code></pre>
+       </div>
+
+       <h3>Example 2: Simple Calculator Using Switch Case</h3>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+// Driver code
+int main() {
+   char choice;
+   int x, y;
+
+   while (1) {
+       printf("Enter the Operator (+,-,*,/)\nEnter x to exit\n");
+       scanf(" %c", &choice);
+
+       if (choice == 'x') {
+           exit(0);
+       }
+
+       printf("Enter the two numbers: ");
+       scanf("%d %d", &x, &y);
+
+       switch (choice) {
+           case '+':
+               printf("%d + %d = %d\n", x, y, x + y);
+               break;
+           case '-':
+               printf("%d - %d = %d\n", x, y, x - y);
+               break;
+           case '*':
+               printf("%d * %d = %d\n", x, y, x * y);
+               break;
+           case '/':
+               printf("%d / %d = %d\n", x, y, x / y);
+               break;
+           default:
+               printf("Invalid Operator Input\n");
+       }
+   }
+   return 0;
+}</code></pre>
+       </div>
+
+       <h4>Output:</h4>
+       <div class="code-container">
+        <h3>Sample Code</h3>
+           <pre><code>Enter the operator (+, -, *, /)
+Enter x to exit
++
+Enter the two numbers: 100 200
+100 + 200 = 300</code></pre>
+       </div>
+
+       <h3>Advantages of C Switch Statement:</h3>
+       <ul>
+           <li>Easier to read than multiple <code>if-else</code> statements.</li>
+           <li>Faster execution speed.</li>
+           <li>Easier to debug and maintain with a large number of conditions.</li>
+       </ul>
+
+       <h3>Disadvantages of C Switch Statement:</h3>
+       <ul>
+           <li>Can only evaluate <code>int</code> or <code>char</code> types.</li>
+           <li>No support for logical expressions.</li>
+           <li>Must include a <code>break</code> statement in every case to prevent fall-through.</li>
+       </ul>
+   </div>
+
+<!-- JavaScript for Dropdown Functionality -->
+<script>
+    function toggleDropdown(id) {
+        var dropdown = document.getElementById(id);
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+{% endblock %}

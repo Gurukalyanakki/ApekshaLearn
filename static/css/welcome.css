@@ -1,0 +1,108 @@
+/* General Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #1a1a1a;
+    color: #d9d9d9;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Enlarged Wrapper for Carousel with Intense Fire Glow */
+.carousel-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 95%; /* Increased width */
+    height: 85vh; /* Increased height */
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 
+        0 0 40px rgba(255, 102, 0, 0.578),
+        0 0 80px rgba(255, 153, 51, 0.423),
+        0 0 90px rgba(255, 51, 0, 0.5),
+        0 0 120px rgba(255, 102, 0, 0.4),
+        0 0 150px rgba(255, 204, 51, 0.3);
+}
+
+/* Carousel Container */
+.carousel-container {
+    width: 200%; /* Increased width */
+    height: 200%; /* Increased height */
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    width: 300%;
+    height: 100%;
+    animation: slideAnimation 9s infinite;
+}
+
+.slide {
+    min-width: 100%;
+    transition: transform 0.5s ease;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(50%);
+}
+
+/* Plush Font for Hero Title */
+.plush-font {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 60px;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #ffcc33, #ff6600, #cc3300);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Hero Content */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+}
+
+.hero-content p {
+    font-size: 20px;
+    color: #ff6600;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #ff6600;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 25px;
+}
+
+/* Carousel Animation */
+@keyframes slideAnimation {
+    0% { transform: translateX(0); }
+    33% { transform: translateX(-100%); }
+    66% { transform: translateX(-200%); }
+    100% { transform: translateX(0); }
+}
